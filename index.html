@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sinan Hameed | Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+    transition:.3s;
+}
+
+#progress{
+    position:fixed;
+    top:0;
+    left:0;
+    width:0%;
+    height:4px;
+    background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
+    z-index:5000;
+}
+
+/* NAVBAR */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    height:65px;
+    background:#071b3a;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.logo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.nav-buttons button{
+    border:0;
+    background:#18365f;
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-buttons button:hover{
+    background:#1683ff;
+    transform:translateY(-2px);
+}
+
+#menu{
+    position:absolute;
+    right:5%;
+    top:65px;
+    width:210px;
+    background:#0b2854;
+    padding:10px;
+    border-radius:0 0 15px 15px;
+    display:none;
+    box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+#menu.show{
+    display:block;
+    animation:menuIn .3s ease;
+}
+
+@keyframes menuIn{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+#menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:13px;
+    border-radius:8px;
+}
+
+#menu a:hover{
+    background:#1683ff;
+}
+
+/* SECTIONS */
+section{
+    display:none;
+    min-height:calc(100vh - 65px);
+    padding:60px 7%;
+}
+
+section.active{
+    display:block;
+    animation:sectionIn .5s ease;
+}
+
+@keyframes sectionIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HOME */
+.hero{
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(
+        135deg,
+        #071b3a,
+        #1683ff,
+        #7b4dff
+    );
+}
+
+.hero.active{
+    display:flex;
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    filter:blur(10px);
+    animation:float 7s infinite alternate;
+}
+
+.blob1{
+    width:280px;
+    height:280px;
+    top:5%;
+    left:5%;
+}
+
+.blob2{
+    width:230px;
+    height:230px;
+    right:5%;
+    bottom:5%;
+    animation-delay:2s;
+}
+
+.blob3{
+    width:180px;
+    height:180px;
+    left:45%;
+    bottom:-80px;
+    animation-delay:4s;
+}
+
+@keyframes float{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(50px,-40px);
+    }
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
+}
+
+.available{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.3);
+    margin-bottom:20px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        box-shadow:0 0 25px rgba(255,255,255,.35);
+    }
+}
+
+.profile{
+    width:165px;
+    height:165px;
+    margin:auto;
+    padding:5px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00d4ff,#ff4fd8);
+    box-shadow:0 0 40px rgba(255,255,255,.4);
+    transition:.4s;
+}
+
+.profile:hover{
+    transform:scale(1.06) rotate(2deg);
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    background:#ddd;
+}
+
+.upload{
+    margin-top:15px;
+}
+
+.upload input{
+    display:none;
+}
+
+.upload label{
+    display:inline-block;
+    padding:11px 20px;
+    background:rgba(255,255,255,.15);
+    border-radius:25px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.upload label:hover{
+    background:rgba(255,255,255,.3);
+}
+
+.hero h1{
+    font-size:clamp(35px,7vw,62px);
+    margin-top:22px;
+    line-height:1.15;
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #b9f1ff,
+        #ffffff
+    );
+    background-size:200% auto;
+    color:transparent;
+    background-clip:text;
+    -webkit-background-clip:text;
+    animation:gradientText 4s linear infinite;
+}
+
+@keyframes gradientText{
+    to{
+        background-position:200% center;
+    }
+}
+
+.typing{
+    color:#b9f1ff;
+    font-size:25px;
+    font-weight:bold;
+    margin:15px 0;
+    min-height:30px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+    color:#e1efff;
+}
+
+.btn{
+    display:inline-block;
+    border:0;
+    cursor:pointer;
+    text-decoration:none;
+    padding:14px 23px;
+    border-radius:30px;
+    font-weight:bold;
+    margin:25px 5px 0;
+    transition:.3s;
+}
+
+.primary{
+    background:#1683ff;
+    color:white;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.secondary{
+    background:white;
+    color:#071b3a;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+.quick-info{
+    margin:30px auto 0;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.quick-info span{
+    padding:8px 14px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    font-size:13px;
+}
+
+/* TITLES */
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h2{
+    font-size:36px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#667085;
+}
+
+/* ABOUT */
+.about-box{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    line-height:1.8;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.stats{
+    max-width:1000px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.stat{
+    background:white;
+    padding:25px 10px;
+    text-align:center;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-5px);
+}
+
+.stat h3{
+    color:#1683ff;
+    font-size:30px;
+}
+
+.stat p{
+    color:#667085;
+    margin-top:7px;
+}
+
+/* SKILLS */
+.skills{
+    max-width:850px;
+    margin:auto;
+}
+
+.skill{
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:15px;
+    box-shadow:0 7px 20px rgba(0,0,0,.06);
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.bar{
+    height:10px;
+    background:#e4e9f0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#1683ff,#7b4dff);
+    border-radius:20px;
+    animation:barIn 1.5s ease;
+}
+
+@keyframes barIn{
+    from{
+        width:0!important;
+    }
+}
+
+/* WHY */
+.why{
+    max-width:1050px;
+    margin:35px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.why-card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    transition:.35s;
+}
+
+.why-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+}
+
+.why-icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.why-card h3{
+    margin-bottom:8px;
+}
+
+.why-card p{
+    color:#667085;
+    line-height:1.6;
+}
+
+/* SERVICES */
+.services{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.service-card{
+    position:relative;
+    background:rgba(255,255,255,.8);
+    border:1px solid rgba(255,255,255,.7);
+    padding:30px 25px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    transition:.4s;
+    overflow:hidden;
+}
+
+.service-card:before{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:rgba(22,131,255,.08);
+    top:-60px;
+    right:-40px;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 22px 45px rgba(0,0,0,.14);
+}
+
+.service-icon{
+    font-size:48px;
+    margin-bottom:18px;
+    position:relative;
+}
+
+.service-card h3{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.service-card p{
+    color:#667085;
+    line-height:1.7;
+}
+
+.service-card .service-btn{
+    display:inline-block;
+    margin-top:18px;
+    text-decoration:none;
+    color:#1683ff;
+    font-weight:bold;
+}
+
+/* TESTIMONIALS */
+.testimonials{
+    max-width:1100px;
+    margin:20px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.testimonial{
+    background:white;
+    padding:28px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.07);
+    transition:.35s;
+}
+
+.testimonial:hover{
+    transform:translateY(-7px);
+}
+
+.stars{
+    color:#f59e0b;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.testimonial p{
+    color:#667085;
+    line-height:1.7;
+    font-style:italic;
+}
+
+.person{
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.person span{
+    display:block;
+    font-size:13px;
+    color:#1683ff;
+    margin-top:4px;
+}
+
+/* WORK */
+.filters{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.filter{
+    border:0;
+    padding:10px 18px;
+    margin:4px;
+    border-radius:25px;
+    cursor:pointer;
+    background:#e5ebf4;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.filter.active,
+.filter:hover{
+    background:#1683ff;
+    color:white;
+    transform:translateY(-2px);
+}
+
+.projects{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.project{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.4s;
+    animation:projectIn .5s ease;
+}
+
+@keyframes projectIn{
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.project:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.project.featured{
+    grid-column:span 2;
+}
+
+.project-image{
+    height:230px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:80px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#071b3a,#1683ff);
+}
+
+.project-image:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    left:-50px;
+    bottom:-70px;
+}
+
+.project-image:after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    right:-40px;
+    top:-40px;
+}
+
+.project.design .project-image{
+    background:linear-gradient(135deg,#662d91,#ed4b9b);
+}
+
+.project.interactive .project-image{
+    background:linear-gradient(135deg,#075985,#10b981);
+}
+
+.featured-label{
+    position:absolute;
+    z-index:2;
+    top:15px;
+    left:15px;
+    background:#ffd166;
+    color:#222;
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.project-info{
+    padding:25px;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:20px;
+    background:#e8f2ff;
+    color:#1683ff;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.project h3{
+    font-size:23px;
+    margin-bottom:10px;
+}
+
+.project p{
+    color:#667085;
+    line-height:1.7;
+}
+
+.project-buttons{
+    margin-top:18px;
+}
+
+.project-buttons a,
+.project-buttons button{
+    display:inline-block;
+    padding:10px 15px;
+    border:0;
+    border-radius:20px;
+    margin-right:5px;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.project-buttons a:hover,
+.project-buttons button:hover{
+    transform:translateY(-3px);
+}
+
+.view{
+    background:#1683ff;
+    color:white;
+}
+
+.code{
+    background:#e9eef5;
+    color:#172033;
+}
+
+/* CONTACT */
+.contact-box{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.contact-box input,
+.contact-box textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #d5dce5;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus{
+    border-color:#1683ff;
+    box-shadow:0 0 0 3px rgba(22,131,255,.1);
+}
+
+.contact-box textarea{
+    height:140px;
+    resize:vertical;
+}
+
+.whatsapp{
+    width:100%;
+    background:#1683ff;
+    color:white;
+}
+
+/* FOOTER */
+footer{
+    background:#071b3a;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer p{
+    color:#b9c8dc;
+    margin:10px 0 18px;
+}
+
+.social a{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#18365f;
+    padding:10px 18px;
+    border-radius:25px;
+    margin:4px;
+    transition:.3s;
+}
+
+.social a:hover{
+    background:#1683ff;
+    transform:translateY(-3px);
+}
+
+/* TOP */
+#top{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:#1683ff;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    z-index:999;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:3000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(800px,100%);
+    max-height:85vh;
+    overflow:auto;
+    background:#101827;
+    color:white;
+    border-radius:18px;
+    padding:25px;
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    border:0;
+    background:#ef4444;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.copy{
+    border:0;
+    background:#1683ff;
+    color:white;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:15px;
+}
+
+pre{
+    background:#050b14;
+    padding:20px;
+    border-radius:12px;
+    white-space:pre-wrap;
+    line-height:1.6;
+}
+
+/* DARK */
+body.dark{
+    background:#08111f;
+    color:#f1f5f9;
+}
+
+body.dark .about-box,
+body.dark .stat,
+body.dark .skill,
+body.dark .project,
+body.dark .contact-box,
+body.dark .why-card,
+body.dark .service-card,
+body.dark .testimonial{
+    background:#101c2d;
+    border-color:#1d3048;
+}
+
+body.dark .title p,
+body.dark .project p,
+body.dark .stat p,
+body.dark .why-card p,
+body.dark .service-card p,
+body.dark .testimonial p{
+    color:#aab8ca;
+}
+
+body.dark .filter{
+    background:#17263b;
+    color:white;
+}
+
+body.dark .filter.active{
+    background:#1683ff;
+}
+
+body.dark .code{
+    background:#17263b;
+    color:white;
+}
+
+/* MOBILE */
+@media(max-width:750px){
+
+    section{
+        padding:50px 5%;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .project.featured{
+        grid-column:span 1;
+    }
+
+    .why,
+    .services,
+    .testimonials{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .logo{
+        font-size:20px;
+    }
+
+    .nav-buttons button{
+        padding:8px 10px;
+    }
+
+    .hero h1{
+        font-size:33px;
+    }
+
+    .typing{
+        font-size:21px;
+    }
+
+    .stats{
+        gap:10px;
+    }
+
+    .stat{
+        padding:18px 5px;
+    }
+
+    .stat h3{
+        font-size:25px;
+    }
+
+    .project-image{
+        height:190px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="progress"></div>
+
+<!-- NAVBAR -->
+<nav>
+
+    <div class="logo">
+        Sinan Hameed
+    </div>
+
+    <div class="nav-buttons">
+
+        <button onclick="toggleMenu()">☰</button>
+
+        <button onclick="toggleDark()" id="darkBtn">
+            🌙
+        </button>
+
+    </div>
+
+    <div id="menu">
+
+        <a href="#" onclick="showPage('home')">🏠 Home</a>
+        <a href="#" onclick="showPage('about')">👤 About</a>
+        <a href="#" onclick="showPage('services')">🛠️ Services</a>
+        <a href="#" onclick="showPage('work')">💻 Work</a>
+        <a href="#" onclick="showPage('contact')">📩 Contact</a>
+
+    </div>
+
+</nav>
+
+
+<!-- HOME -->
+<section id="home" class="hero active">
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="hero-content">
+
+        <div class="available">
+            🟢 Available for Projects
+        </div>
+
+        <div class="profile">
+
+            <img id="profilePhoto" alt="Profile Photo">
+
+        </div>
+
+        <div class="upload">
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*">
+
+            <label for="photoInput">
+                📷 Choose Profile Photo
+            </label>
+
+        </div>
+
+        <h1>
+            Hello, I'm Sinan Hameed
+        </h1>
+
+        <div class="typing" id="typing"></div>
+
+        <p>
+            I create modern, responsive and creative
+            websites with clean design, smooth animations
+            and interactive user experiences.
+        </p>
+
+        <button
+            class="btn primary"
+            onclick="showPage('work')">
+            🚀 View My Work
+        </button>
+
+        <button
+            class="btn secondary"
+            onclick="showPage('contact')">
+            🤝 Hire Me
+        </button>
+
+        <a
+            class="btn secondary"
+            href="https://www.instagram.com/__sinan_hameed/"
+            target="_blank">
+            📸 Instagram
+        </a>
+
+        <div class="quick-info">
+
+            <span>💻 Web Development</span>
+            <span>🎨 UI Design</span>
+            <span>📱 Responsive</span>
+            <span>⚡ Interactive</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+
+    <div class="title">
+
+        <h2>About Me</h2>
+
+        <p>
+            Developer • Designer • Creative Learner
+        </p>
+
+    </div>
+
+    <div class="about-box">
+
+        <p>
+            I'm Sinan Hameed, a creative learner interested
+            in web development, frontend design and
+            interactive digital experiences. I enjoy creating
+            modern websites and continuously improving my skills.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3 class="counter" data-target="3">0</h3>
+            <p>Projects</p>
+        </div>
+
+        <div class="stat">
+            <h3 class="counter" data-target="5">0</h3>
+            <p>Skills</p>
+        </div>
+
+        <div class="stat">
+            <h3 class="counter" data-target="100">0</h3>
+            <p>Creativity %</p>
+        </div>
+
+        <div class="stat">
+            <h3>24+</h3>
+            <p>Learning Hours</p>
+        </div>
+
+    </div>
+
+
+    <div class="title">
+        <h2>My Skills</h2>
+    </div>
+
+    <div class="skills">
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>HTML</span>
+                <span>90%</span>
+            </div>
+            <div class="bar">
+                <span style="width:90%"></span>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>CSS</span>
+                <span>85%</span>
+            </div>
+            <div class="bar">
+                <span style="width:85%"></span>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>JavaScript</span>
+                <span>75%</span>
+            </div>
+            <div class="bar">
+                <span style="width:75%"></span>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>UI Design</span>
+                <span>80%</span>
+            </div>
+            <div class="bar">
+                <span style="width:80%"></span>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-top">
+                <span>Responsive Design</span>
+                <span>88%</span>
+            </div>
+            <div class="bar">
+                <span style="width:88%"></span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="title" style="margin-top:60px">
+
+        <h2>Why Choose Me?</h2>
+
+        <p>
+            What I focus on when creating websites
+        </p>
+
+    </div>
+
+
+    <div class="why">
+
+        <div class="why-card">
+
+            <div class="why-icon">⚡</div>
+
+            <h3>Fast & Clean</h3>
+
+            <p>
+                Clean layouts and smooth interactions
+                for a better experience.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <div class="why-icon">📱</div>
+
+            <h3>Responsive</h3>
+
+            <p>
+                Designs that work beautifully on phones,
+                tablets and computers.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <div class="why-icon">🎨</div>
+
+            <h3>Creative</h3>
+
+            <p>
+                Modern visual ideas with attention to
+                detail and usability.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+    <div class="title">
+
+        <h2>My Services</h2>
+
+        <p>
+            What I can create for your next idea
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                💻
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Modern websites built with clean HTML,
+                CSS and JavaScript.
+            </p>
+
+            <a
+                href="#"
+                onclick="showPage('contact')"
+                class="service-btn">
+
+                Let's Build →
+
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🎨
+            </div>
+
+            <h3>
+                UI Design
+            </h3>
+
+            <p>
+                Attractive and easy-to-use interfaces
+                focused on a smooth user experience.
+            </p>
+
+            <a
+                href="#"
+                onclick="showPage('contact')"
+                class="service-btn">
+
+                Let's Design →
+
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📱
+            </div>
+
+            <h3>
+                Responsive Design
+            </h3>
+
+            <p>
+                Websites that adapt beautifully to
+                mobile, tablet and desktop screens.
+            </p>
+
+            <a
+                href="#"
+                onclick="showPage('contact')"
+                class="service-btn">
+
+                Start Project →
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- TESTIMONIALS -->
+
+    <div class="title" style="margin-top:70px">
+
+        <h2>
+            Testimonials
+        </h2>
+
+        <p>
+            Example feedback section for your portfolio
+        </p>
+
+    </div>
+
+
+    <div class="testimonials">
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Amazing creative work with a clean and
+                modern design."
+            </p>
+
+            <div class="person">
+                Alex
+                <span>Project Client</span>
+            </div>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "The website looks great on both mobile
+                and desktop."
+            </p>
+
+            <div class="person">
+                Sam
+                <span>Design Client</span>
+            </div>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Smooth animations and a very professional
+                overall experience."
+            </p>
+
+            <div class="person">
+                Chris
+                <span>Web Client</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WORK -->
+<section id="work">
+
+    <div class="title">
+
+        <h2>
+            Premium Projects
+        </h2>
+
+        <p>
+            Explore my creative work
+        </p>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            onclick="filterProjects('all',this)">
+            All
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProjects('web',this)">
+            🌐 Web
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProjects('design',this)">
+            🎨 Design
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterProjects('interactive',this)">
+            ⚡ Interactive
+        </button>
+
+    </div>
+
+
+    <div class="projects">
+
+
+        <!-- PROJECT 1 -->
+
+        <div
+            class="project featured"
+            data-category="web">
+
+            <div class="project-image">
+
+                <span class="featured-label">
+                    ⭐ FEATURED PROJECT
+                </span>
+
+                💻
+
+            </div>
+
+            <div class="project-info">
+
+                <span class="badge">
+                    WEB DEVELOPMENT
+                </span>
+
+                <h3>
+                    Modern Portfolio Website
+                </h3>
+
+                <p>
+                    A premium responsive portfolio featuring
+                    dark mode, animated hero section, mobile
+                    navigation, skills, statistics and
+                    interactive project showcase.
+                </p>
+
+                <div class="project-buttons">
+
+                    <a
+                        class="view"
+                        href="https://www.instagram.com/reel/DWJQh69D3bk/?igsi=MW52YzI1em44d3FsdQ=="
+                        target="_blank">
+                        🚀 View Project
+                    </a>
+
+                    <button
+                        class="code"
+                        onclick="showCode('portfolio')">
+                        💻 View Code
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 2 -->
+
+        <div
+            class="project design"
+            data-category="design">
+
+            <div class="project-image">
+                🎨
+            </div>
+
+            <div class="project-info">
+
+                <span class="badge">
+                    DESIGN
+                </span>
+
+                <h3>
+                    Creative UI Design
+                </h3>
+
+                <p>
+                    A modern interface concept focused on
+                    clean layouts, visual balance and
+                    attractive user experience.
+                </p>
+
+                <div class="project-buttons">
+
+                    <a
+                        class="view"
+                        href="https://www.instagram.com/reel/Dcqf1EzJxZd/?igsi=MTV2eWR2bjNncnQ1Yg=="
+                        target="_blank">
+                        🚀 View Project
+                    </a>
+
+                    <button
+                        class="code"
+                        onclick="showCode('design')">
+                        💻 View Code
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT 3 -->
+
+        <div
+            class="project interactive"
+            data-category="interactive">
+
+            <div class="project-image">
+                ⚡
+            </div>
+
+            <div class="project-info">
+
+                <span class="badge">
+                    INTERACTIVE
+                </span>
+
+                <h3>
+                    Interactive Web Experience
+                </h3>
+
+                <p>
+                    An engaging web concept featuring smooth
+                    animations, buttons and interactive
+                    user experiences.
+                </p>
+
+                <div class="project-buttons">
+
+                    <a
+                        class="view"
+                        href="https://www.instagram.com/reel/DYtmW1kpuDq/?igsi=ZHR3YjhrM2p0dmdx"
+                        target="_blank">
+                        🚀 View Project
+                    </a>
+
+                    <button
+                        class="code"
+                        onclick="showCode('interactive')">
+                        💻 View Code
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+    <div class="title">
+
+        <h2>
+            Contact Me
+        </h2>
+
+        <p>
+            Have a project idea? Let's connect.
+        </p>
+
+    </div>
+
+
+    <div class="contact-box">
+
+        <form onsubmit="sendWhatsApp(event)">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                required>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+                required>
+
+            <textarea
+                id="message"
+                placeholder="Your Message"
+                required></textarea>
+
+            <button
+                class="btn whatsapp"
+                type="submit">
+
+                📱 Send on WhatsApp
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>
+        Sinan Hameed
+    </h3>
+
+    <p>
+        Web Developer • Creative Designer • UI Enthusiast
+    </p>
+
+    <div class="social">
+
+        <a
+            href="https://www.instagram.com/__sinan_hameed/"
+            target="_blank">
+            📸 Instagram
+        </a>
+
+        <a
+            href="https://wa.me/919633834259"
+            target="_blank">
+            📱 WhatsApp
+        </a>
+
+    </div>
+
+    <br>
+
+    <small>
+        © 2026 Sinan Hameed. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<!-- TOP -->
+<button
+    id="top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+
+<!-- CODE MODAL -->
+<div
+    class="modal"
+    id="codeModal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                Project Code
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeCode()">
+                ✕
+            </button>
+
+        </div>
+
+        <button
+            class="copy"
+            onclick="copyCode()">
+            📋 Copy Code
+        </button>
+
+        <pre id="codeContent"></pre>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* MENU */
+
+function toggleMenu(){
+
+    document
+    .getElementById("menu")
+    .classList.toggle("show");
+
+}
+
+
+/* PAGE */
+
+function showPage(page){
+
+    document
+    .querySelectorAll("section")
+    .forEach(function(section){
+
+        section.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(page)
+    .classList.add("active");
+
+
+    document
+    .getElementById("menu")
+    .classList.remove("show");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    if(page==="about"){
+        startCounters();
+    }
+
+}
+
+
+/* DARK MODE */
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+    var btn=
+        document.getElementById("darkBtn");
+
+    if(
+        document.body.classList.contains("dark")
+    ){
+
+        btn.textContent="☀️";
+
+    }else{
+
+        btn.textContent="🌙";
+
+    }
+
+}
+
+
+/* PROFILE */
+
+document
+.getElementById("photoInput")
+.addEventListener(
+    "change",
+    function(){
+
+        var file=this.files[0];
+
+        if(file){
+
+            var reader=new FileReader();
+
+            reader.onload=function(e){
+
+                document
+                .getElementById("profilePhoto")
+                .src=e.target.result;
+
+            };
+
+            reader.readAsDataURL(file);
+
+        }
+
+    }
+);
+
+
+/* TYPING */
+
+var words=[
+    "Web Developer",
+    "Creative Designer",
+    "Frontend Developer",
+    "UI Designer"
+];
+
+var wordIndex=0;
+var letterIndex=0;
+var deleting=false;
+
+function typingEffect(){
+
+    var element=
+        document.getElementById("typing");
+
+    var word=
+        words[wordIndex];
+
+
+    if(!deleting){
+
+        element.textContent=
+            word.substring(
+                0,
+                letterIndex+1
+            );
+
+        letterIndex++;
+
+
+        if(letterIndex===word.length){
+
+            deleting=true;
+
+            setTimeout(
+                typingEffect,
+                1200
+            );
+
+            return;
+
+        }
+
+    }else{
+
+        element.textContent=
+            word.substring(
+                0,
+                letterIndex-1
+            );
+
+        letterIndex--;
+
+
+        if(letterIndex===0){
+
+            deleting=false;
+
+            wordIndex=
+                (wordIndex+1)
+                %words.length;
+
+        }
+
+    }
+
+
+    setTimeout(
+        typingEffect,
+        deleting ? 50 : 100
+    );
+
+}
+
+typingEffect();
+
+
+/* FILTER */
+
+function filterProjects(category,button){
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    document
+    .querySelectorAll(".project")
+    .forEach(function(project){
+
+        if(
+            category==="all" ||
+            project.dataset.category===category
+        ){
+
+            project.style.display="block";
+
+        }else{
+
+            project.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* COUNTERS */
+
+var countersStarted=false;
+
+function startCounters(){
+
+    if(countersStarted){
+        return;
+    }
+
+    countersStarted=true;
+
+
+    document
+    .querySelectorAll(".counter")
+    .forEach(function(counter){
+
+        var target=
+            Number(counter.dataset.target);
+
+        var current=0;
+
+        var step=
+            Math.max(
+                1,
+                Math.ceil(target/50)
+            );
+
+
+        var timer=
+            setInterval(function(){
+
+                current+=step;
+
+                if(current>=target){
+
+                    current=target;
+
+                    clearInterval(timer);
+
+                }
+
+                counter.textContent=current;
+
+            },30);
+
+    });
+
+}
+
+
+/* WHATSAPP */
+
+function sendWhatsApp(event){
+
+    event.preventDefault();
+
+
+    var name=
+        document.getElementById("name").value;
+
+    var email=
+        document.getElementById("email").value;
+
+    var message=
+        document.getElementById("message").value;
+
+
+    var text=
+        "Hello Sinan!%0A%0A"+
+        "Name: "+
+        encodeURIComponent(name)+
+        "%0AEmail: "+
+        encodeURIComponent(email)+
+        "%0A%0AMessage:%0A"+
+        encodeURIComponent(message);
+
+
+    window.open(
+        "https://wa.me/919633834259?text="+text,
+        "_blank"
+    );
+
+}
+
+
+/* CODE */
+
+var codes={
+
+portfolio:
+`<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Sinan Hameed Portfolio</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#071b3a;
+    color:white;
+    text-align:center;
+}
+
+h1{
+    font-size:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Hello, I'm Sinan Hameed</h1>
+
+<p>Web Developer & Creative Designer</p>
+
+</body>
+
+</html>`,
+
+design:
+`<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+.card{
+    max-width:500px;
+    margin:50px auto;
+    padding:30px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 10px 30px #ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Creative UI Design</h1>
+
+<p>Modern interface design.</p>
+
+</div>
+
+</body>
+
+</html>`,
+
+interactive:
+`<!DOCTYPE html>
+<html>
+
+<body>
+
+<h1>Interactive Web Experience</h1>
+
+<button onclick="hello()">
+Click Me
+</button>
+
+<script>
+
+function hello(){
+
+    alert("Hello Sinan!");
+
+}
+
+<\/script>
+
+</body>
+
+</html>`
+
+};
+
+
+/* SHOW CODE */
+
+function showCode(type){
+
+    document
+    .getElementById("codeContent")
+    .textContent=codes[type];
+
+
+    document
+    .getElementById("codeModal")
+    .classList.add("show");
+
+}
+
+
+/* CLOSE CODE */
+
+function closeCode(){
+
+    document
+    .getElementById("codeModal")
+    .classList.remove("show");
+
+}
+
+
+/* COPY */
+
+function copyCode(){
+
+    var code=
+        document
+        .getElementById("codeContent")
+        .textContent;
+
+
+    if(
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+    ){
+
+        navigator.clipboard
+        .writeText(code)
+        .then(function(){
+
+            document
+            .querySelector(".copy")
+            .textContent="✅ Copied!";
+
+
+            setTimeout(function(){
+
+                document
+                .querySelector(".copy")
+                .textContent="📋 Copy Code";
+
+            },1500);
+
+        });
+
+    }else{
+
+        alert("Copy is not supported here.");
+
+    }
+
+}
+
+
+/* MODAL OUTSIDE CLICK */
+
+document
+.getElementById("codeModal")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target===this){
+
+            closeCode();
+
+        }
+
+    }
+);
+
+
+/* ESCAPE */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key==="Escape"){
+
+            closeCode();
+
+        }
+
+    }
+);
+
+
+/* SCROLL */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        var top=
+            document.getElementById("top");
+
+
+        if(window.scrollY>300){
+
+            top.style.display="block";
+
+        }else{
+
+            top.style.display="none";
+
+        }
+
+
+        var height=
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+
+
+        var progress=
+            (window.scrollY/height)*100;
+
+
+        document
+        .getElementById("progress")
+        .style.width=
+            progress+"%";
+
+    }
+);
+
+</script>
+
+</body>
+  </html>
