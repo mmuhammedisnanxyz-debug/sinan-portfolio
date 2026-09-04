@@ -7,6 +7,11 @@
 <title>Sinan Hameed | Portfolio</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -18,11 +23,24 @@ html{
 }
 
 body{
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
     background:#f4f7fb;
     color:#172033;
     transition:.3s;
+    overflow-x:hidden;
 }
+
+a{
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
 
 #progress{
     position:fixed;
@@ -31,26 +49,29 @@ body{
     width:0%;
     height:4px;
     background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
-    z-index:5000;
+    z-index:9999;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
+
 nav{
     position:sticky;
     top:0;
     z-index:1000;
     height:65px;
-    background:#071b3a;
+    padding:0 6%;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 6%;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
+    background:#071b3a;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
 .logo{
     color:white;
-    font-size:22px;
+    font-size:23px;
     font-weight:bold;
 }
 
@@ -77,546 +98,502 @@ nav{
 
 #menu{
     position:absolute;
-    right:5%;
+    right:6%;
     top:65px;
-    width:210px;
+    width:220px;
     background:#0b2854;
     padding:10px;
     border-radius:0 0 15px 15px;
     display:none;
-    box-shadow:0 15px 30px rgba(0,0,0,.3);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-#menu.show{
-    display:block;
-    animation:menuIn .3s ease;
-}
-
-@keyframes menuIn{
-    from{
-        opacity:0;
-        transform:translateY(-10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-#menu a{
-    display:block;
+#menu button{
+    width:100%;
+    border:0;
+    background:transparent;
     color:white;
-    text-decoration:none;
     padding:13px;
+    text-align:left;
+    font-size:16px;
     border-radius:8px;
+    cursor:pointer;
 }
 
-#menu a:hover{
+#menu button:hover{
     background:#1683ff;
 }
 
-/* SECTIONS */
-section{
-    display:none;
-    min-height:calc(100vh - 65px);
-    padding:60px 7%;
-}
+/* =========================
+   HERO
+========================= */
 
-section.active{
-    display:block;
-    animation:sectionIn .5s ease;
-}
-
-@keyframes sectionIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* HOME */
 .hero{
+    min-height:calc(100vh - 65px);
+    padding:45px 20px 70px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     position:relative;
     overflow:hidden;
-    text-align:center;
+    background:linear-gradient(135deg,#06376e,#1683ff,#7455ff);
     color:white;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(
-        135deg,
-        #071b3a,
-        #1683ff,
-        #7b4dff
-    );
 }
 
-.hero.active{
-    display:flex;
-}
-
-.blob{
+.hero::before,
+.hero::after{
+    content:"";
     position:absolute;
     border-radius:50%;
-    background:rgba(255,255,255,.12);
     filter:blur(10px);
-    animation:float 7s infinite alternate;
+    animation:float 7s infinite ease-in-out;
 }
 
-.blob1{
+.hero::before{
     width:280px;
     height:280px;
-    top:5%;
-    left:5%;
+    background:rgba(0,212,255,.25);
+    top:10%;
+    left:-100px;
 }
 
-.blob2{
-    width:230px;
-    height:230px;
-    right:5%;
-    bottom:5%;
+.hero::after{
+    width:320px;
+    height:320px;
+    background:rgba(255,80,220,.25);
+    bottom:-100px;
+    right:-100px;
     animation-delay:2s;
 }
 
-.blob3{
-    width:180px;
-    height:180px;
-    left:45%;
-    bottom:-80px;
-    animation-delay:4s;
-}
-
 @keyframes float{
-    from{
+    0%,100%{
         transform:translate(0,0);
     }
-    to{
-        transform:translate(50px,-40px);
+    50%{
+        transform:translate(30px,-30px);
     }
 }
 
 .hero-content{
     position:relative;
     z-index:2;
-    width:100%;
     max-width:900px;
+    animation:heroIn 1s ease;
 }
 
-.available{
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   AVAILABLE BADGE
+========================= */
+
+.availability{
     display:inline-block;
-    padding:9px 18px;
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
+    padding:12px 25px;
     border:1px solid rgba(255,255,255,.3);
-    margin-bottom:20px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    border-radius:40px;
+    font-size:20px;
+    margin-bottom:30px;
     animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
+    0%,100%{
+        box-shadow:0 0 0 rgba(255,255,255,0);
+    }
     50%{
-        box-shadow:0 0 25px rgba(255,255,255,.35);
+        box-shadow:0 0 25px rgba(255,255,255,.25);
     }
 }
 
-.profile{
-    width:165px;
-    height:165px;
-    margin:auto;
-    padding:5px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#00d4ff,#ff4fd8);
-    box-shadow:0 0 40px rgba(255,255,255,.4);
-    transition:.4s;
+/* =========================
+   PROFILE PHOTO
+========================= */
+
+.profile-wrap{
+    margin-bottom:25px;
 }
 
-.profile:hover{
-    transform:scale(1.06) rotate(2deg);
-}
-
-.profile img{
-    width:100%;
-    height:100%;
+.profile-photo{
+    width:260px;
+    height:260px;
     object-fit:cover;
     border-radius:50%;
-    background:#ddd;
+    border:5px solid rgba(255,255,255,.4);
+    box-shadow:
+        0 0 25px rgba(0,212,255,.7),
+        0 0 60px rgba(168,85,247,.4);
+    transition:.4s;
+    background:linear-gradient(135deg,#00d4ff,#a855f7);
 }
 
-.upload{
-    margin-top:15px;
+.profile-photo:hover{
+    transform:scale(1.05);
 }
 
-.upload input{
-    display:none;
-}
-
-.upload label{
+.photo-label{
     display:inline-block;
-    padding:11px 20px;
+    margin-top:20px;
+    padding:14px 25px;
     background:rgba(255,255,255,.15);
-    border-radius:25px;
+    border-radius:30px;
     cursor:pointer;
+    font-size:17px;
     transition:.3s;
 }
 
-.upload label:hover{
-    background:rgba(255,255,255,.3);
+.photo-label:hover{
+    background:rgba(255,255,255,.25);
+    transform:translateY(-3px);
 }
+
+#photoInput{
+    display:none;
+}
+
+/* =========================
+   HERO TEXT
+========================= */
 
 .hero h1{
-    font-size:clamp(35px,7vw,62px);
-    margin-top:22px;
-    line-height:1.15;
-    background:linear-gradient(
-        90deg,
-        #ffffff,
-        #b9f1ff,
-        #ffffff
-    );
-    background-size:200% auto;
-    color:transparent;
-    background-clip:text;
+    font-size:52px;
+    margin:25px 0 15px;
+    background:linear-gradient(90deg,#fff,#a9edff,#fff);
     -webkit-background-clip:text;
-    animation:gradientText 4s linear infinite;
-}
-
-@keyframes gradientText{
-    to{
-        background-position:200% center;
-    }
+    -webkit-text-fill-color:transparent;
 }
 
 .typing{
-    color:#b9f1ff;
-    font-size:25px;
+    font-size:30px;
     font-weight:bold;
-    margin:15px 0;
-    min-height:30px;
+    min-height:40px;
 }
 
-.hero p{
-    max-width:700px;
-    margin:auto;
-    line-height:1.8;
-    color:#e1efff;
+.hero-description{
+    max-width:750px;
+    margin:25px auto;
+    font-size:21px;
+    line-height:1.7;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
 }
 
 .btn{
     display:inline-block;
     border:0;
-    cursor:pointer;
-    text-decoration:none;
-    padding:14px 23px;
-    border-radius:30px;
+    padding:16px 28px;
+    border-radius:35px;
+    font-size:17px;
     font-weight:bold;
-    margin:25px 5px 0;
+    cursor:pointer;
     transition:.3s;
 }
 
-.primary{
+.btn-primary{
     background:#1683ff;
     color:white;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
-.secondary{
+.btn-light{
     background:white;
-    color:#071b3a;
+    color:#172033;
 }
 
 .btn:hover{
-    transform:translateY(-5px) scale(1.03);
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
-.quick-info{
-    margin:30px auto 0;
+/* =========================
+   INFO CHIPS
+========================= */
+
+.info-chips{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:10px;
+    gap:12px;
+    margin-top:40px;
 }
 
-.quick-info span{
-    padding:8px 14px;
+.chip{
+    padding:11px 20px;
+    border:1px solid rgba(255,255,255,.25);
     background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:20px;
-    font-size:13px;
+    border-radius:30px;
+    backdrop-filter:blur(8px);
 }
 
-/* TITLES */
-.title{
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    padding:90px 7%;
+}
+
+.section-title{
     text-align:center;
-    margin-bottom:35px;
+    margin-bottom:50px;
 }
 
-.title h2{
-    font-size:36px;
-    margin-bottom:8px;
+.section-title h2{
+    font-size:38px;
+    margin-bottom:12px;
 }
 
-.title p{
-    color:#667085;
+.section-title p{
+    opacity:.7;
 }
 
-/* ABOUT */
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
 .about-box{
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     background:white;
-    padding:30px;
+    padding:35px;
     border-radius:20px;
-    line-height:1.8;
     box-shadow:0 10px 30px rgba(0,0,0,.08);
+    line-height:1.8;
+    text-align:center;
 }
 
+.about-box p{
+    font-size:18px;
+}
+
+/* =========================
+   STATS
+========================= */
+
 .stats{
-    max-width:1000px;
-    margin:30px auto;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
+    gap:20px;
+    margin-top:40px;
 }
 
 .stat{
     background:white;
-    padding:25px 10px;
-    text-align:center;
+    padding:30px 15px;
     border-radius:18px;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
     transition:.3s;
 }
 
 .stat:hover{
-    transform:translateY(-5px);
+    transform:translateY(-7px);
 }
 
 .stat h3{
-    color:#1683ff;
-    font-size:30px;
+    font-size:35px;
+    margin-bottom:8px;
 }
 
 .stat p{
-    color:#667085;
-    margin-top:7px;
+    opacity:.7;
 }
 
-/* SKILLS */
+/* =========================
+   SKILLS
+========================= */
+
 .skills{
     max-width:850px;
-    margin:auto;
+    margin:50px auto 0;
 }
 
 .skill{
-    background:white;
-    padding:20px;
-    margin-bottom:15px;
-    border-radius:15px;
-    box-shadow:0 7px 20px rgba(0,0,0,.06);
+    margin-bottom:25px;
 }
 
 .skill-top{
     display:flex;
     justify-content:space-between;
+    margin-bottom:8px;
     font-weight:bold;
-    margin-bottom:10px;
 }
 
-.bar{
-    height:10px;
-    background:#e4e9f0;
+.progress-bg{
+    width:100%;
+    height:12px;
+    background:#dce4ef;
     border-radius:20px;
     overflow:hidden;
 }
 
-.bar span{
-    display:block;
+.progress-bar{
     height:100%;
-    background:linear-gradient(90deg,#1683ff,#7b4dff);
+    width:0;
     border-radius:20px;
-    animation:barIn 1.5s ease;
+    background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
+    transition:2s;
 }
 
-@keyframes barIn{
-    from{
-        width:0!important;
-    }
-}
+/* =========================
+   WHY CHOOSE ME
+========================= */
 
-/* WHY */
-.why{
-    max-width:1050px;
-    margin:35px auto 0;
+.why-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    gap:20px;
+    margin-top:50px;
 }
 
 .why-card{
     background:white;
-    padding:25px;
-    border-radius:18px;
+    padding:30px;
+    border-radius:20px;
     text-align:center;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
-    transition:.35s;
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+    transition:.3s;
 }
 
 .why-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 18px 35px rgba(0,0,0,.12);
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
-.why-icon{
-    font-size:35px;
-    margin-bottom:12px;
+.why-card .icon{
+    font-size:40px;
+    margin-bottom:15px;
 }
 
 .why-card h3{
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
-.why-card p{
-    color:#667085;
-    line-height:1.6;
-}
+/* =========================
+   SERVICES
+========================= */
 
-/* SERVICES */
-.services{
-    max-width:1100px;
-    margin:auto;
+.services-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:22px;
+    gap:25px;
+    max-width:1000px;
+    margin:auto;
 }
 
 .service-card{
-    position:relative;
-    background:rgba(255,255,255,.8);
-    border:1px solid rgba(255,255,255,.7);
-    padding:30px 25px;
-    border-radius:22px;
+    padding:40px 25px;
     text-align:center;
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    background:white;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
     transition:.4s;
+    position:relative;
     overflow:hidden;
 }
 
-.service-card:before{
+.service-card::before{
     content:"";
     position:absolute;
-    width:130px;
-    height:130px;
-    border-radius:50%;
-    background:rgba(22,131,255,.08);
-    top:-60px;
-    right:-40px;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
 }
 
 .service-card:hover{
     transform:translateY(-10px);
-    box-shadow:0 22px 45px rgba(0,0,0,.14);
+    box-shadow:0 20px 40px rgba(0,0,0,.14);
 }
 
 .service-icon{
-    font-size:48px;
-    margin-bottom:18px;
-    position:relative;
+    font-size:50px;
+    margin-bottom:20px;
 }
 
 .service-card h3{
-    font-size:22px;
+    font-size:23px;
     margin-bottom:12px;
 }
 
 .service-card p{
-    color:#667085;
-    line-height:1.7;
+    opacity:.7;
+    line-height:1.6;
 }
 
-.service-card .service-btn{
-    display:inline-block;
-    margin-top:18px;
-    text-decoration:none;
-    color:#1683ff;
-    font-weight:bold;
-}
+/* =========================
+   WORK FILTER
+========================= */
 
-/* TESTIMONIALS */
-.testimonials{
-    max-width:1100px;
-    margin:20px auto 0;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.testimonial{
-    background:white;
-    padding:28px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.07);
-    transition:.35s;
-}
-
-.testimonial:hover{
-    transform:translateY(-7px);
-}
-
-.stars{
-    color:#f59e0b;
-    font-size:20px;
-    margin-bottom:15px;
-}
-
-.testimonial p{
-    color:#667085;
-    line-height:1.7;
-    font-style:italic;
-}
-
-.person{
-    margin-top:20px;
-    font-weight:bold;
-}
-
-.person span{
-    display:block;
-    font-size:13px;
-    color:#1683ff;
-    margin-top:4px;
-}
-
-/* WORK */
 .filters{
-    text-align:center;
-    margin-bottom:30px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:35px;
 }
 
-.filter{
+.filter-btn{
     border:0;
-    padding:10px 18px;
-    margin:4px;
+    padding:11px 20px;
     border-radius:25px;
+    background:#dce4ef;
     cursor:pointer;
-    background:#e5ebf4;
-    font-weight:bold;
     transition:.3s;
 }
 
-.filter.active,
-.filter:hover{
+.filter-btn.active,
+.filter-btn:hover{
     background:#1683ff;
     color:white;
-    transform:translateY(-2px);
 }
 
+/* =========================
+   PROJECTS
+========================= */
+
 .projects{
-    max-width:1100px;
-    margin:auto;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:25px;
 }
 
@@ -626,123 +603,72 @@ section.active{
     overflow:hidden;
     box-shadow:0 10px 30px rgba(0,0,0,.08);
     transition:.4s;
-    animation:projectIn .5s ease;
-}
-
-@keyframes projectIn{
-    from{
-        opacity:0;
-        transform:scale(.96);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
 }
 
 .project:hover{
     transform:translateY(-8px);
-    box-shadow:0 20px 45px rgba(0,0,0,.15);
+    box-shadow:0 20px 40px rgba(0,0,0,.14);
 }
 
 .project.featured{
-    grid-column:span 2;
+    border:3px solid #1683ff;
 }
 
-.project-image{
-    height:230px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:80px;
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(135deg,#071b3a,#1683ff);
-}
-
-.project-image:before{
-    content:"";
-    position:absolute;
-    width:180px;
+.project-thumb{
     height:180px;
-    border-radius:50%;
-    background:rgba(255,255,255,.1);
-    left:-50px;
-    bottom:-70px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:70px;
+    background:linear-gradient(135deg,#1683ff,#a855f7);
 }
 
-.project-image:after{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    background:rgba(255,255,255,.12);
-    right:-40px;
-    top:-40px;
-}
-
-.project.design .project-image{
-    background:linear-gradient(135deg,#662d91,#ed4b9b);
-}
-
-.project.interactive .project-image{
-    background:linear-gradient(135deg,#075985,#10b981);
-}
-
-.featured-label{
-    position:absolute;
-    z-index:2;
-    top:15px;
-    left:15px;
-    background:#ffd166;
-    color:#222;
-    padding:7px 13px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.project-info{
+.project-body{
     padding:25px;
 }
 
 .badge{
     display:inline-block;
-    padding:6px 11px;
-    border-radius:20px;
-    background:#e8f2ff;
+    background:#e7f1ff;
     color:#1683ff;
-    font-size:12px;
-    font-weight:bold;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
     margin-bottom:12px;
 }
 
-.project h3{
-    font-size:23px;
+.project-body h3{
     margin-bottom:10px;
 }
 
-.project p{
-    color:#667085;
-    line-height:1.7;
+.project-body p{
+    line-height:1.6;
+    opacity:.7;
 }
 
 .project-buttons{
-    margin-top:18px;
+    display:flex;
+    gap:10px;
+    margin-top:20px;
 }
 
 .project-buttons a,
 .project-buttons button{
-    display:inline-block;
-    padding:10px 15px;
+    flex:1;
+    padding:11px;
     border:0;
-    border-radius:20px;
-    margin-right:5px;
-    text-decoration:none;
+    border-radius:10px;
     cursor:pointer;
+    text-align:center;
     font-weight:bold;
+    background:#1683ff;
+    color:white;
     transition:.3s;
+}
+
+.project-buttons a:last-child,
+.project-buttons button:last-child{
+    background:#172033;
 }
 
 .project-buttons a:hover,
@@ -750,90 +676,143 @@ section.active{
     transform:translateY(-3px);
 }
 
-.view{
-    background:#1683ff;
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram-box{
+    text-align:center;
+    margin-top:45px;
+}
+
+.instagram-btn{
+    display:inline-block;
+    padding:15px 28px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#f58529,#dd2a7b,#8134af);
     color:white;
+    font-weight:bold;
+    transition:.3s;
 }
 
-.code{
-    background:#e9eef5;
-    color:#172033;
+.instagram-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(221,42,123,.3);
 }
 
-/* CONTACT */
+/* =========================
+   CONTACT
+========================= */
+
 .contact-box{
     max-width:700px;
     margin:auto;
     background:white;
-    padding:30px;
-    border-radius:20px;
+    padding:35px;
+    border-radius:22px;
     box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-.contact-box input,
-.contact-box textarea{
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea{
     width:100%;
-    padding:14px;
-    margin-bottom:15px;
-    border:1px solid #d5dce5;
-    border-radius:10px;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #d6dce5;
+    background:#f8fafc;
     outline:none;
-    font-size:15px;
-}
-
-.contact-box input:focus,
-.contact-box textarea:focus{
-    border-color:#1683ff;
-    box-shadow:0 0 0 3px rgba(22,131,255,.1);
-}
-
-.contact-box textarea{
-    height:140px;
-    resize:vertical;
-}
-
-.whatsapp{
-    width:100%;
-    background:#1683ff;
-    color:white;
-}
-
-/* FOOTER */
-footer{
-    background:#071b3a;
-    color:white;
-    text-align:center;
-    padding:35px 20px;
-}
-
-footer p{
-    color:#b9c8dc;
-    margin:10px 0 18px;
-}
-
-.social a{
-    display:inline-block;
-    text-decoration:none;
-    color:white;
-    background:#18365f;
-    padding:10px 18px;
-    border-radius:25px;
-    margin:4px;
+    font-size:16px;
     transition:.3s;
 }
 
-.social a:hover{
+.form-group textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#1683ff;
+    box-shadow:0 0 15px rgba(0,132,255,.15);
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
     background:#1683ff;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
     transform:translateY(-3px);
 }
 
-/* TOP */
-#top{
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:45px 20px;
+    text-align:center;
+    background:#041326;
+    color:white;
+}
+
+footer h2{
+    margin-bottom:10px;
+}
+
+footer p{
+    opacity:.7;
+    margin-bottom:20px;
+}
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.social{
+    padding:12px 20px;
+    border-radius:25px;
+    background:#173a61;
+    color:white;
+    transition:.3s;
+}
+
+.social:hover{
+    transform:translateY(-4px);
+    background:#1683ff;
+}
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+#topBtn{
     position:fixed;
     right:20px;
     bottom:20px;
-    width:45px;
-    height:45px;
+    width:50px;
+    height:50px;
     border:0;
     border-radius:50%;
     background:#1683ff;
@@ -841,10 +820,14 @@ footer p{
     font-size:20px;
     cursor:pointer;
     display:none;
-    z-index:999;
+    z-index:900;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
+
 .modal{
     position:fixed;
     inset:0;
@@ -852,8 +835,8 @@ footer p{
     display:none;
     align-items:center;
     justify-content:center;
+    z-index:5000;
     padding:20px;
-    z-index:3000;
 }
 
 .modal.show{
@@ -861,156 +844,165 @@ footer p{
 }
 
 .modal-box{
-    width:min(800px,100%);
+    width:min(850px,100%);
     max-height:85vh;
     overflow:auto;
     background:#101827;
     color:white;
-    border-radius:18px;
+    border-radius:20px;
     padding:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
 .modal-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
-.close{
+.close-btn{
     border:0;
-    background:#ef4444;
+    background:#263449;
     color:white;
-    padding:8px 12px;
-    border-radius:8px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
     cursor:pointer;
+    font-size:20px;
 }
 
-.copy{
-    border:0;
-    background:#1683ff;
-    color:white;
-    padding:9px 15px;
-    border-radius:8px;
-    cursor:pointer;
-    margin-bottom:15px;
-}
-
-pre{
+.code-area{
     background:#050b14;
     padding:20px;
     border-radius:12px;
+    overflow:auto;
     white-space:pre-wrap;
+    font-family:monospace;
     line-height:1.6;
+    font-size:14px;
 }
 
-/* DARK */
+.copy-btn{
+    margin-top:15px;
+    padding:12px 20px;
+    border:0;
+    border-radius:10px;
+    background:#1683ff;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
 body.dark{
     background:#08111f;
-    color:#f1f5f9;
+    color:#edf4ff;
 }
 
 body.dark .about-box,
 body.dark .stat,
-body.dark .skill,
-body.dark .project,
-body.dark .contact-box,
 body.dark .why-card,
 body.dark .service-card,
-body.dark .testimonial{
-    background:#101c2d;
-    border-color:#1d3048;
+body.dark .project,
+body.dark .contact-box{
+    background:#101b2d;
+    color:#edf4ff;
 }
 
-body.dark .title p,
-body.dark .project p,
-body.dark .stat p,
-body.dark .why-card p,
-body.dark .service-card p,
-body.dark .testimonial p{
-    color:#aab8ca;
+body.dark .progress-bg{
+    background:#25344a;
 }
 
-body.dark .filter{
-    background:#17263b;
+body.dark .filter-btn{
+    background:#1c2b40;
     color:white;
 }
 
-body.dark .filter.active{
+body.dark .filter-btn.active,
+body.dark .filter-btn:hover{
     background:#1683ff;
 }
 
-body.dark .code{
-    background:#17263b;
+body.dark .form-group input,
+body.dark .form-group textarea{
+    background:#0b1525;
     color:white;
+    border-color:#2b3b52;
 }
 
-/* MOBILE */
-@media(max-width:750px){
+body.dark .project-buttons a:last-child,
+body.dark .project-buttons button:last-child{
+    background:#263449;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 25px;
+    }
+
+    .hero{
+        padding:40px 18px 60px;
+    }
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .typing{
+        font-size:25px;
+    }
+
+    .hero-description{
+        font-size:18px;
+    }
+
+    .profile-photo{
+        width:210px;
+        height:210px;
+    }
 
     section{
-        padding:50px 5%;
+        padding:70px 20px;
+    }
+
+    .section-title h2{
+        font-size:32px;
     }
 
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .why-grid,
+    .services-grid,
     .projects{
         grid-template-columns:1fr;
     }
 
-    .project.featured{
-        grid-column:span 1;
+    .project-buttons{
+        flex-direction:column;
     }
 
-    .why,
-    .services,
-    .testimonials{
-        grid-template-columns:1fr;
+    .hero-buttons{
+        flex-direction:column;
+        align-items:center;
     }
 
-    .hero h1{
-        font-size:38px;
-    }
-
-}
-
-@media(max-width:450px){
-
-    .logo{
-        font-size:20px;
-    }
-
-    .nav-buttons button{
-        padding:8px 10px;
-    }
-
-    .hero h1{
-        font-size:33px;
-    }
-
-    .typing{
-        font-size:21px;
-    }
-
-    .stats{
-        gap:10px;
-    }
-
-    .stat{
-        padding:18px 5px;
-    }
-
-    .stat h3{
-        font-size:25px;
-    }
-
-    .project-image{
-        height:190px;
+    .hero-buttons .btn{
+        width:90%;
     }
 
 }
+
 </style>
 </head>
 
@@ -1018,7 +1010,10 @@ body.dark .code{
 
 <div id="progress"></div>
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav>
 
     <div class="logo">
@@ -1027,9 +1022,11 @@ body.dark .code{
 
     <div class="nav-buttons">
 
-        <button onclick="toggleMenu()">☰</button>
+        <button onclick="toggleMenu()">
+            ☰
+        </button>
 
-        <button onclick="toggleDark()" id="darkBtn">
+        <button onclick="toggleDark()">
             🌙
         </button>
 
@@ -1037,46 +1034,65 @@ body.dark .code{
 
     <div id="menu">
 
-        <a href="#" onclick="showPage('home')">🏠 Home</a>
-        <a href="#" onclick="showPage('about')">👤 About</a>
-        <a href="#" onclick="showPage('services')">🛠️ Services</a>
-        <a href="#" onclick="showPage('work')">💻 Work</a>
-        <a href="#" onclick="showPage('contact')">📩 Contact</a>
+        <button onclick="showPage('home')">
+            🏠 Home
+        </button>
+
+        <button onclick="showPage('about')">
+            👤 About
+        </button>
+
+        <button onclick="showPage('services')">
+            💼 Services
+        </button>
+
+        <button onclick="showPage('work')">
+            🚀 Work
+        </button>
+
+        <button onclick="showPage('contact')">
+            📩 Contact
+        </button>
 
     </div>
 
 </nav>
 
 
-<!-- HOME -->
-<section id="home" class="hero active">
+<!-- =========================
+     HOME
+========================= -->
 
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
+<section id="home" class="hero">
 
     <div class="hero-content">
 
-        <div class="available">
+        <div class="availability">
             🟢 Available for Projects
         </div>
 
-        <div class="profile">
+        <div class="profile-wrap">
 
-            <img id="profilePhoto" alt="Profile Photo">
+            <!-- GitHub uploaded photo -->
+            <img
+                src="1000033941-Picsart-AiImageEnhancer.jpg"
+                alt="Sinan Hameed"
+                class="profile-photo"
+                id="profilePhoto"
+            >
 
-        </div>
+            <br>
 
-        <div class="upload">
+            <!-- Optional local photo changer -->
+            <label class="photo-label" for="photoInput">
+                📷 Choose Profile Photo
+            </label>
 
             <input
                 type="file"
                 id="photoInput"
-                accept="image/*">
-
-            <label for="photoInput">
-                📷 Choose Profile Photo
-            </label>
+                accept="image/*"
+            >
 
         </div>
 
@@ -1086,380 +1102,380 @@ body.dark .code{
 
         <div class="typing" id="typing"></div>
 
-        <p>
-            I create modern, responsive and creative
-            websites with clean design, smooth animations
-            and interactive user experiences.
+        <p class="hero-description">
+            I create modern, responsive and creative websites
+            with clean design, smooth animations and interactive
+            user experiences.
         </p>
 
-        <button
-            class="btn primary"
-            onclick="showPage('work')">
-            🚀 View My Work
-        </button>
-
-        <button
-            class="btn secondary"
-            onclick="showPage('contact')">
-            🤝 Hire Me
-        </button>
-
-        <a
-            class="btn secondary"
-            href="https://www.instagram.com/__sinan_hameed/"
-            target="_blank">
-            📸 Instagram
-        </a>
-
-        <div class="quick-info">
-
-            <span>💻 Web Development</span>
-            <span>🎨 UI Design</span>
-            <span>📱 Responsive</span>
-            <span>⚡ Interactive</span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ABOUT -->
-<section id="about">
-
-    <div class="title">
-
-        <h2>About Me</h2>
-
-        <p>
-            Developer • Designer • Creative Learner
-        </p>
-
-    </div>
-
-    <div class="about-box">
-
-        <p>
-            I'm Sinan Hameed, a creative learner interested
-            in web development, frontend design and
-            interactive digital experiences. I enjoy creating
-            modern websites and continuously improving my skills.
-        </p>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat">
-            <h3 class="counter" data-target="3">0</h3>
-            <p>Projects</p>
-        </div>
-
-        <div class="stat">
-            <h3 class="counter" data-target="5">0</h3>
-            <p>Skills</p>
-        </div>
-
-        <div class="stat">
-            <h3 class="counter" data-target="100">0</h3>
-            <p>Creativity %</p>
-        </div>
-
-        <div class="stat">
-            <h3>24+</h3>
-            <p>Learning Hours</p>
-        </div>
-
-    </div>
-
-
-    <div class="title">
-        <h2>My Skills</h2>
-    </div>
-
-    <div class="skills">
-
-        <div class="skill">
-            <div class="skill-top">
-                <span>HTML</span>
-                <span>90%</span>
-            </div>
-            <div class="bar">
-                <span style="width:90%"></span>
-            </div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-top">
-                <span>CSS</span>
-                <span>85%</span>
-            </div>
-            <div class="bar">
-                <span style="width:85%"></span>
-            </div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-top">
-                <span>JavaScript</span>
-                <span>75%</span>
-            </div>
-            <div class="bar">
-                <span style="width:75%"></span>
-            </div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-top">
-                <span>UI Design</span>
-                <span>80%</span>
-            </div>
-            <div class="bar">
-                <span style="width:80%"></span>
-            </div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-top">
-                <span>Responsive Design</span>
-                <span>88%</span>
-            </div>
-            <div class="bar">
-                <span style="width:88%"></span>
-            </div>
-        </div>
-
-    </div>
-
-
-    <div class="title" style="margin-top:60px">
-
-        <h2>Why Choose Me?</h2>
-
-        <p>
-            What I focus on when creating websites
-        </p>
-
-    </div>
-
-
-    <div class="why">
-
-        <div class="why-card">
-
-            <div class="why-icon">⚡</div>
-
-            <h3>Fast & Clean</h3>
-
-            <p>
-                Clean layouts and smooth interactions
-                for a better experience.
-            </p>
-
-        </div>
-
-        <div class="why-card">
-
-            <div class="why-icon">📱</div>
-
-            <h3>Responsive</h3>
-
-            <p>
-                Designs that work beautifully on phones,
-                tablets and computers.
-            </p>
-
-        </div>
-
-        <div class="why-card">
-
-            <div class="why-icon">🎨</div>
-
-            <h3>Creative</h3>
-
-            <p>
-                Modern visual ideas with attention to
-                detail and usability.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SERVICES -->
-<section id="services">
-
-    <div class="title">
-
-        <h2>My Services</h2>
-
-        <p>
-            What I can create for your next idea
-        </p>
-
-    </div>
-
-
-    <div class="services">
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                💻
-            </div>
-
-            <h3>
-                Web Development
-            </h3>
-
-            <p>
-                Modern websites built with clean HTML,
-                CSS and JavaScript.
-            </p>
+        <div class="hero-buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('work')"
+            >
+                🚀 View My Work
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="showPage('contact')"
+            >
+                🤝 Hire Me
+            </button>
 
             <a
-                href="#"
-                onclick="showPage('contact')"
-                class="service-btn">
-
-                Let's Build →
-
+                class="btn btn-light"
+                href="https://www.instagram.com/__sinan_hameed/"
+                target="_blank"
+            >
+                📸 Instagram
             </a>
 
         </div>
 
+        <div class="info-chips">
 
-        <div class="service-card">
+            <span class="chip">
+                💻 Web Development
+            </span>
+
+            <span class="chip">
+                🎨 UI Design
+            </span>
+
+            <span class="chip">
+                📱 Responsive
+            </span>
+
+            <span class="chip">
+                ⚡ Interactive
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="section-title reveal">
+
+        <h2>About Me</h2>
+
+        <p>
+            A little about my skills and creativity
+        </p>
+
+    </div>
+
+    <div class="about-box reveal">
+
+        <p>
+            Hi, I'm Sinan Hameed. I enjoy creating modern,
+            creative and responsive digital experiences.
+            I love learning new technologies and improving
+            my design and development skills.
+        </p>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats reveal">
+
+        <div class="stat">
+
+            <h3 class="counter" data-target="3">
+                0
+            </h3>
+
+            <p>
+                Projects
+            </p>
+
+        </div>
+
+        <div class="stat">
+
+            <h3 class="counter" data-target="5">
+                0
+            </h3>
+
+            <p>
+                Skills
+            </p>
+
+        </div>
+
+        <div class="stat">
+
+            <h3>
+                100%
+            </h3>
+
+            <p>
+                Creativity
+            </p>
+
+        </div>
+
+        <div class="stat">
+
+            <h3 class="counter" data-target="24">
+                0
+            </h3>
+
+            <p>
+                Learning Hours+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILLS -->
+
+    <div class="skills reveal">
+
+        <div class="skill">
+
+            <div class="skill-top">
+                <span>HTML</span>
+                <span>90%</span>
+            </div>
+
+            <div class="progress-bg">
+                <div
+                    class="progress-bar"
+                    data-width="90%"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-top">
+                <span>CSS</span>
+                <span>85%</span>
+            </div>
+
+            <div class="progress-bg">
+                <div
+                    class="progress-bar"
+                    data-width="85%"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-top">
+                <span>JavaScript</span>
+                <span>75%</span>
+            </div>
+
+            <div class="progress-bg">
+                <div
+                    class="progress-bar"
+                    data-width="75%"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-top">
+                <span>UI Design</span>
+                <span>80%</span>
+            </div>
+
+            <div class="progress-bg">
+                <div
+                    class="progress-bar"
+                    data-width="80%"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-top">
+                <span>Responsive Design</span>
+                <span>88%</span>
+            </div>
+
+            <div class="progress-bg">
+                <div
+                    class="progress-bar"
+                    data-width="88%"
+                ></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- WHY CHOOSE ME -->
+
+    <div class="why-grid">
+
+        <div class="why-card reveal">
+
+            <div class="icon">
+                💡
+            </div>
+
+            <h3>
+                Creative Ideas
+            </h3>
+
+            <p>
+                Modern and creative concepts
+                for digital projects.
+            </p>
+
+        </div>
+
+
+        <div class="why-card reveal">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>
+                Fast Learning
+            </h3>
+
+            <p>
+                Always learning new skills
+                and technologies.
+            </p>
+
+        </div>
+
+
+        <div class="why-card reveal">
+
+            <div class="icon">
+                📱
+            </div>
+
+            <h3>
+                Responsive
+            </h3>
+
+            <p>
+                Designs that work beautifully
+                on mobile and desktop.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services">
+
+    <div class="section-title reveal">
+
+        <h2>
+            My Services
+        </h2>
+
+        <p>
+            Creative services I offer
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+
+        <!-- VIDEOGRAPHER -->
+
+        <div class="service-card reveal">
+
+            <div class="service-icon">
+                🎥
+            </div>
+
+            <h3>
+                Videographer
+            </h3>
+
+            <p>
+                Creative video shooting and
+                visual storytelling for different
+                types of projects.
+            </p>
+
+        </div>
+
+
+        <!-- PHOTOGRAPHY -->
+
+        <div class="service-card reveal">
+
+            <div class="service-icon">
+                📷
+            </div>
+
+            <h3>
+                Photography
+            </h3>
+
+            <p>
+                Creative photography with
+                attention to composition,
+                lighting and visual quality.
+            </p>
+
+        </div>
+
+
+        <!-- GRAPHIC DESIGNER -->
+
+        <div class="service-card reveal">
 
             <div class="service-icon">
                 🎨
             </div>
 
             <h3>
-                UI Design
+                Graphic Designer
             </h3>
 
             <p>
-                Attractive and easy-to-use interfaces
-                focused on a smooth user experience.
+                Creative graphic designs,
+                social media visuals and
+                modern digital artwork.
             </p>
-
-            <a
-                href="#"
-                onclick="showPage('contact')"
-                class="service-btn">
-
-                Let's Design →
-
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                📱
-            </div>
-
-            <h3>
-                Responsive Design
-            </h3>
-
-            <p>
-                Websites that adapt beautifully to
-                mobile, tablet and desktop screens.
-            </p>
-
-            <a
-                href="#"
-                onclick="showPage('contact')"
-                class="service-btn">
-
-                Start Project →
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- TESTIMONIALS -->
-
-    <div class="title" style="margin-top:70px">
-
-        <h2>
-            Testimonials
-        </h2>
-
-        <p>
-            Example feedback section for your portfolio
-        </p>
-
-    </div>
-
-
-    <div class="testimonials">
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Amazing creative work with a clean and
-                modern design."
-            </p>
-
-            <div class="person">
-                Alex
-                <span>Project Client</span>
-            </div>
-
-        </div>
-
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "The website looks great on both mobile
-                and desktop."
-            </p>
-
-            <div class="person">
-                Sam
-                <span>Design Client</span>
-            </div>
-
-        </div>
-
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Smooth animations and a very professional
-                overall experience."
-            </p>
-
-            <div class="person">
-                Chris
-                <span>Web Client</span>
-            </div>
 
         </div>
 
@@ -1468,46 +1484,55 @@ body.dark .code{
 </section>
 
 
-<!-- WORK -->
+<!-- =========================
+     WORK
+========================= -->
+
 <section id="work">
 
-    <div class="title">
+    <div class="section-title reveal">
 
         <h2>
-            Premium Projects
+            My Work
         </h2>
 
         <p>
-            Explore my creative work
+            Some of my creative projects
         </p>
 
     </div>
 
 
-    <div class="filters">
+    <!-- FILTER -->
+
+    <div class="filters reveal">
 
         <button
-            class="filter active"
-            onclick="filterProjects('all',this)">
+            class="filter-btn active"
+            onclick="filterProjects('all',this)"
+        >
             All
         </button>
 
         <button
-            class="filter"
-            onclick="filterProjects('web',this)">
-            🌐 Web
+            class="filter-btn"
+            onclick="filterProjects('web',this)"
+        >
+            Web
         </button>
 
         <button
-            class="filter"
-            onclick="filterProjects('design',this)">
-            🎨 Design
+            class="filter-btn"
+            onclick="filterProjects('design',this)"
+        >
+            Design
         </button>
 
         <button
-            class="filter"
-            onclick="filterProjects('interactive',this)">
-            ⚡ Interactive
+            class="filter-btn"
+            onclick="filterProjects('interactive',this)"
+        >
+            Interactive
         </button>
 
     </div>
@@ -1518,49 +1543,40 @@ body.dark .code{
 
         <!-- PROJECT 1 -->
 
-        <div
-            class="project featured"
-            data-category="web">
+        <div class="project featured reveal" data-category="web">
 
-            <div class="project-image">
-
-                <span class="featured-label">
-                    ⭐ FEATURED PROJECT
-                </span>
-
+            <div class="project-thumb">
                 💻
-
             </div>
 
-            <div class="project-info">
+            <div class="project-body">
 
                 <span class="badge">
-                    WEB DEVELOPMENT
+                    Featured • Web
                 </span>
 
                 <h3>
-                    Modern Portfolio Website
+                    Premium Portfolio
                 </h3>
 
                 <p>
-                    A premium responsive portfolio featuring
-                    dark mode, animated hero section, mobile
-                    navigation, skills, statistics and
-                    interactive project showcase.
+                    A modern responsive portfolio
+                    website with animations,
+                    dark mode and interactive UI.
                 </p>
 
                 <div class="project-buttons">
 
                     <a
-                        class="view"
                         href="https://www.instagram.com/reel/DWJQh69D3bk/?igsi=MW52YzI1em44d3FsdQ=="
-                        target="_blank">
+                        target="_blank"
+                    >
                         🚀 View Project
                     </a>
 
                     <button
-                        class="code"
-                        onclick="showCode('portfolio')">
+                        onclick="showCode('portfolio')"
+                    >
                         💻 View Code
                     </button>
 
@@ -1573,18 +1589,16 @@ body.dark .code{
 
         <!-- PROJECT 2 -->
 
-        <div
-            class="project design"
-            data-category="design">
+        <div class="project reveal" data-category="design">
 
-            <div class="project-image">
+            <div class="project-thumb">
                 🎨
             </div>
 
-            <div class="project-info">
+            <div class="project-body">
 
                 <span class="badge">
-                    DESIGN
+                    Design
                 </span>
 
                 <h3>
@@ -1592,23 +1606,22 @@ body.dark .code{
                 </h3>
 
                 <p>
-                    A modern interface concept focused on
-                    clean layouts, visual balance and
-                    attractive user experience.
+                    Clean and creative user interface
+                    concepts with modern visual design.
                 </p>
 
                 <div class="project-buttons">
 
                     <a
-                        class="view"
                         href="https://www.instagram.com/reel/Dcqf1EzJxZd/?igsi=MTV2eWR2bjNncnQ1Yg=="
-                        target="_blank">
+                        target="_blank"
+                    >
                         🚀 View Project
                     </a>
 
                     <button
-                        class="code"
-                        onclick="showCode('design')">
+                        onclick="showCode('ui')"
+                    >
                         💻 View Code
                     </button>
 
@@ -1621,42 +1634,40 @@ body.dark .code{
 
         <!-- PROJECT 3 -->
 
-        <div
-            class="project interactive"
-            data-category="interactive">
+        <div class="project reveal" data-category="interactive">
 
-            <div class="project-image">
+            <div class="project-thumb">
                 ⚡
             </div>
 
-            <div class="project-info">
+            <div class="project-body">
 
                 <span class="badge">
-                    INTERACTIVE
+                    Interactive
                 </span>
 
                 <h3>
-                    Interactive Web Experience
+                    Interactive Experience
                 </h3>
 
                 <p>
-                    An engaging web concept featuring smooth
-                    animations, buttons and interactive
-                    user experiences.
+                    Interactive web experience
+                    with smooth animations and
+                    engaging user interactions.
                 </p>
 
                 <div class="project-buttons">
 
                     <a
-                        class="view"
                         href="https://www.instagram.com/reel/DYtmW1kpuDq/?igsi=ZHR3YjhrM2p0dmdx"
-                        target="_blank">
+                        target="_blank"
+                    >
                         🚀 View Project
                     </a>
 
                     <button
-                        class="code"
-                        onclick="showCode('interactive')">
+                        onclick="showCode('interactive')"
+                    >
                         💻 View Code
                     </button>
 
@@ -1668,52 +1679,97 @@ body.dark .code{
 
     </div>
 
+
+    <div class="instagram-box reveal">
+
+        <a
+            class="instagram-btn"
+            href="https://www.instagram.com/__sinan_hameed/"
+            target="_blank"
+        >
+            📸 See More on Instagram
+        </a>
+
+    </div>
+
 </section>
 
 
-<!-- CONTACT -->
+<!-- =========================
+     CONTACT
+========================= -->
+
 <section id="contact">
 
-    <div class="title">
+    <div class="section-title reveal">
 
         <h2>
             Contact Me
         </h2>
 
         <p>
-            Have a project idea? Let's connect.
+            Let's connect and create something great
         </p>
 
     </div>
 
 
-    <div class="contact-box">
+    <div class="contact-box reveal">
 
-        <form onsubmit="sendWhatsApp(event)">
+        <form onsubmit="sendMessage(event)">
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Your Name"
-                required>
+            <div class="form-group">
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Your Email"
-                required>
+                <label>
+                    Your Name
+                </label>
 
-            <textarea
-                id="message"
-                placeholder="Your Message"
-                required></textarea>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Write your message..."
+                    required
+                ></textarea>
+
+            </div>
+
 
             <button
-                class="btn whatsapp"
-                type="submit">
-
-                📱 Send on WhatsApp
-
+                class="submit-btn"
+                type="submit"
+            >
+                📩 Send Message
             </button>
 
         </form>
@@ -1723,78 +1779,89 @@ body.dark .code{
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-    <h3>
+    <h2>
         Sinan Hameed
-    </h3>
+    </h2>
 
     <p>
-        Web Developer • Creative Designer • UI Enthusiast
+        Creative • Photography • Videography • Design
     </p>
 
-    <div class="social">
+    <div class="socials">
 
         <a
+            class="social"
             href="https://www.instagram.com/__sinan_hameed/"
-            target="_blank">
+            target="_blank"
+        >
             📸 Instagram
-        </a>
-
-        <a
-            href="https://wa.me/919633834259"
-            target="_blank">
-            📱 WhatsApp
         </a>
 
     </div>
 
-    <br>
-
-    <small>
+    <p>
         © 2026 Sinan Hameed. All Rights Reserved.
-    </small>
+    </p>
 
 </footer>
 
 
-<!-- TOP -->
+<!-- =========================
+     BACK TO TOP
+========================= -->
+
 <button
-    id="top"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    id="topBtn"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+>
     ↑
 </button>
 
 
-<!-- CODE MODAL -->
+<!-- =========================
+     CODE MODAL
+========================= -->
+
 <div
     class="modal"
-    id="codeModal">
+    id="codeModal"
+    onclick="outsideClose(event)"
+>
 
     <div class="modal-box">
 
         <div class="modal-head">
 
-            <h3>
+            <h2 id="modalTitle">
                 Project Code
-            </h3>
+            </h2>
 
             <button
-                class="close"
-                onclick="closeCode()">
-                ✕
+                class="close-btn"
+                onclick="closeCode()"
+            >
+                ×
             </button>
 
         </div>
 
+        <pre
+            class="code-area"
+            id="codeContent"
+        ></pre>
+
         <button
-            class="copy"
-            onclick="copyCode()">
+            class="copy-btn"
+            onclick="copyCode()"
+        >
             📋 Copy Code
         </button>
-
-        <pre id="codeContent"></pre>
 
     </div>
 
@@ -1803,210 +1870,174 @@ body.dark .code{
 
 <script>
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
 
 function toggleMenu(){
 
-    document
-    .getElementById("menu")
-    .classList.toggle("show");
+    const menu = document.getElementById("menu");
 
-}
-
-
-/* PAGE */
-
-function showPage(page){
-
-    document
-    .querySelectorAll("section")
-    .forEach(function(section){
-
-        section.classList.remove("active");
-
-    });
-
-
-    document
-    .getElementById(page)
-    .classList.add("active");
-
-
-    document
-    .getElementById("menu")
-    .classList.remove("show");
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-
-    if(page==="about"){
-        startCounters();
+    if(menu.style.display === "block"){
+        menu.style.display = "none";
+    }else{
+        menu.style.display = "block";
     }
 
 }
 
 
-/* DARK MODE */
+/* =========================
+   SHOW PAGE
+========================= */
+
+function showPage(id){
+
+    const section = document.getElementById(id);
+
+    if(section){
+
+        section.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+    document.getElementById("menu").style.display="none";
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
 
 function toggleDark(){
 
     document.body.classList.toggle("dark");
 
-    var btn=
-        document.getElementById("darkBtn");
-
-    if(
-        document.body.classList.contains("dark")
-    ){
-
-        btn.textContent="☀️";
-
-    }else{
-
-        btn.textContent="🌙";
-
-    }
-
 }
 
 
-/* PROFILE */
+/* =========================
+   TYPING ANIMATION
+========================= */
 
-document
-.getElementById("photoInput")
-.addEventListener(
-    "change",
-    function(){
-
-        var file=this.files[0];
-
-        if(file){
-
-            var reader=new FileReader();
-
-            reader.onload=function(e){
-
-                document
-                .getElementById("profilePhoto")
-                .src=e.target.result;
-
-            };
-
-            reader.readAsDataURL(file);
-
-        }
-
-    }
-);
-
-
-/* TYPING */
-
-var words=[
+const words = [
     "Web Developer",
     "Creative Designer",
     "Frontend Developer",
     "UI Designer"
 ];
 
-var wordIndex=0;
-var letterIndex=0;
-var deleting=false;
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-function typingEffect(){
+function typeEffect(){
 
-    var element=
-        document.getElementById("typing");
+    const typing = document.getElementById("typing");
 
-    var word=
-        words[wordIndex];
-
+    const current = words[wordIndex];
 
     if(!deleting){
 
-        element.textContent=
-            word.substring(
-                0,
-                letterIndex+1
-            );
+        typing.textContent =
+            current.substring(0,charIndex + 1);
 
-        letterIndex++;
+        charIndex++;
 
+        if(charIndex === current.length){
 
-        if(letterIndex===word.length){
+            deleting = true;
 
-            deleting=true;
-
-            setTimeout(
-                typingEffect,
-                1200
-            );
+            setTimeout(typeEffect,1200);
 
             return;
-
         }
 
     }else{
 
-        element.textContent=
-            word.substring(
-                0,
-                letterIndex-1
-            );
+        typing.textContent =
+            current.substring(0,charIndex - 1);
 
-        letterIndex--;
+        charIndex--;
 
+        if(charIndex === 0){
 
-        if(letterIndex===0){
+            deleting = false;
 
-            deleting=false;
+            wordIndex++;
 
-            wordIndex=
-                (wordIndex+1)
-                %words.length;
+            if(wordIndex >= words.length){
+                wordIndex = 0;
+            }
 
         }
 
     }
 
-
     setTimeout(
-        typingEffect,
-        deleting ? 50 : 100
+        typeEffect,
+        deleting ? 50 : 90
     );
 
 }
 
-typingEffect();
+typeEffect();
 
 
-/* FILTER */
+/* =========================
+   PROFILE PHOTO
+========================= */
+
+document
+.getElementById("photoInput")
+.addEventListener("change",function(){
+
+    const file = this.files[0];
+
+    if(file){
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            document
+            .getElementById("profilePhoto")
+            .src = e.target.result;
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+
+});
+
+
+/* =========================
+   PROJECT FILTER
+========================= */
 
 function filterProjects(category,button){
 
+    const projects =
+        document.querySelectorAll(".project");
+
     document
-    .querySelectorAll(".filter")
-    .forEach(function(btn){
-
+    .querySelectorAll(".filter-btn")
+    .forEach(btn=>{
         btn.classList.remove("active");
-
     });
-
 
     button.classList.add("active");
 
-
-    document
-    .querySelectorAll(".project")
-    .forEach(function(project){
+    projects.forEach(project=>{
 
         if(
-            category==="all" ||
-            project.dataset.category===category
+            category === "all" ||
+            project.dataset.category === category
         ){
 
             project.style.display="block";
@@ -2022,146 +2053,216 @@ function filterProjects(category,button){
 }
 
 
-/* COUNTERS */
+/* =========================
+   SCROLL REVEAL
+========================= */
 
-var countersStarted=false;
+const observer =
+new IntersectionObserver(
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+        }
+
+    });
+
+},
+{
+    threshold:.15
+}
+);
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+    observer.observe(el);
+});
+
+
+/* =========================
+   SKILL ANIMATION
+========================= */
+
+const skillObserver =
+new IntersectionObserver(
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            document
+            .querySelectorAll(".progress-bar")
+            .forEach(bar=>{
+
+                bar.style.width =
+                    bar.dataset.width;
+
+            });
+
+        }
+
+    });
+
+},
+{
+    threshold:.3
+}
+);
+
+const skillsSection =
+document.querySelector(".skills");
+
+if(skillsSection){
+    skillObserver.observe(skillsSection);
+}
+
+
+/* =========================
+   COUNTERS
+========================= */
+
+let countersStarted = false;
 
 function startCounters(){
 
-    if(countersStarted){
-        return;
-    }
+    if(countersStarted) return;
 
-    countersStarted=true;
-
+    countersStarted = true;
 
     document
     .querySelectorAll(".counter")
-    .forEach(function(counter){
+    .forEach(counter=>{
 
-        var target=
+        const target =
             Number(counter.dataset.target);
 
-        var current=0;
+        let value = 0;
 
-        var step=
-            Math.max(
-                1,
-                Math.ceil(target/50)
-            );
+        const interval =
+        setInterval(()=>{
 
+            value++;
 
-        var timer=
-            setInterval(function(){
+            counter.textContent = value;
 
-                current+=step;
+            if(value >= target){
+                clearInterval(interval);
+            }
 
-                if(current>=target){
-
-                    current=target;
-
-                    clearInterval(timer);
-
-                }
-
-                counter.textContent=current;
-
-            },30);
+        },60);
 
     });
 
 }
 
 
-/* WHATSAPP */
+const counterObserver =
+new IntersectionObserver(
+(entries)=>{
 
-function sendWhatsApp(event){
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            startCounters();
+
+        }
+
+    });
+
+},
+{
+    threshold:.5
+}
+);
+
+document
+.querySelectorAll(".stats")
+.forEach(el=>{
+    counterObserver.observe(el);
+});
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+function sendMessage(event){
 
     event.preventDefault();
 
-
-    var name=
+    const name =
         document.getElementById("name").value;
 
-    var email=
+    const email =
         document.getElementById("email").value;
 
-    var message=
+    const message =
         document.getElementById("message").value;
 
-
-    var text=
-        "Hello Sinan!%0A%0A"+
-        "Name: "+
-        encodeURIComponent(name)+
-        "%0AEmail: "+
-        encodeURIComponent(email)+
-        "%0A%0AMessage:%0A"+
-        encodeURIComponent(message);
-
-
-    window.open(
-        "https://wa.me/919633834259?text="+text,
-        "_blank"
+    alert(
+        "Thank you " +
+        name +
+        "! Your message has been received."
     );
 
+    console.log({
+        name:name,
+        email:email,
+        message:message
+    });
+
 }
 
 
-/* CODE */
+/* =========================
+   CODE MODAL
+========================= */
 
-var codes={
+const projectCodes = {
 
 portfolio:
+
 `<!DOCTYPE html>
 <html>
-
 <head>
-
-<title>Sinan Hameed Portfolio</title>
-
-<style>
-
-body{
-    font-family:Arial;
-    background:#071b3a;
-    color:white;
-    text-align:center;
-}
-
-h1{
-    font-size:50px;
-}
-
-</style>
-
+<title>Portfolio</title>
 </head>
 
 <body>
 
 <h1>Hello, I'm Sinan Hameed</h1>
 
-<p>Web Developer & Creative Designer</p>
+<p>
+Creative Web Developer & Designer
+</p>
 
 </body>
-
 </html>`,
 
-design:
+ui:
+
 `<!DOCTYPE html>
 <html>
-
 <head>
 
 <style>
 
 .card{
-    max-width:500px;
-    margin:50px auto;
     padding:30px;
     border-radius:20px;
-    background:white;
-    box-shadow:0 10px 30px #ddd;
+    background:linear-gradient(
+        135deg,
+        #1683ff,
+        #a855f7
+    );
+    color:white;
 }
 
 </style>
@@ -2171,34 +2272,43 @@ design:
 <body>
 
 <div class="card">
-
-<h1>Creative UI Design</h1>
-
-<p>Modern interface design.</p>
-
+    Creative UI Design
 </div>
 
 </body>
-
 </html>`,
 
 interactive:
+
 `<!DOCTYPE html>
 <html>
 
+<head>
+
+<style>
+
+button{
+    padding:15px 25px;
+    border:0;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
 <body>
 
-<h1>Interactive Web Experience</h1>
-
 <button onclick="hello()">
-Click Me
+    Click Me
 </button>
 
 <script>
 
 function hello(){
 
-    alert("Hello Sinan!");
+    alert("Hello!");
 
 }
 
@@ -2211,23 +2321,29 @@ function hello(){
 };
 
 
-/* SHOW CODE */
+function showCode(project){
 
-function showCode(type){
+    const modal =
+        document.getElementById("codeModal");
 
-    document
-    .getElementById("codeContent")
-    .textContent=codes[type];
+    const content =
+        document.getElementById("codeContent");
 
+    const title =
+        document.getElementById("modalTitle");
 
-    document
-    .getElementById("codeModal")
-    .classList.add("show");
+    title.textContent =
+        project.charAt(0).toUpperCase()
+        + project.slice(1)
+        + " Project Code";
+
+    content.textContent =
+        projectCodes[project];
+
+    modal.classList.add("show");
 
 }
 
-
-/* CLOSE CODE */
 
 function closeCode(){
 
@@ -2238,122 +2354,101 @@ function closeCode(){
 }
 
 
-/* COPY */
-
-function copyCode(){
-
-    var code=
-        document
-        .getElementById("codeContent")
-        .textContent;
-
+function outsideClose(event){
 
     if(
-        navigator.clipboard &&
-        navigator.clipboard.writeText
+        event.target ===
+        document.getElementById("codeModal")
     ){
 
-        navigator.clipboard
-        .writeText(code)
-        .then(function(){
-
-            document
-            .querySelector(".copy")
-            .textContent="✅ Copied!";
-
-
-            setTimeout(function(){
-
-                document
-                .querySelector(".copy")
-                .textContent="📋 Copy Code";
-
-            },1500);
-
-        });
-
-    }else{
-
-        alert("Copy is not supported here.");
+        closeCode();
 
     }
 
 }
 
 
-/* MODAL OUTSIDE CLICK */
+function copyCode(){
 
-document
-.getElementById("codeModal")
-.addEventListener(
-    "click",
-    function(e){
+    const code =
+        document.getElementById("codeContent")
+        .textContent;
 
-        if(e.target===this){
+    navigator.clipboard
+    .writeText(code)
+    .then(()=>{
 
-            closeCode();
+        alert("Code copied! 📋");
 
-        }
+    })
+    .catch(()=>{
 
-    }
-);
+        alert("Copy failed.");
+
+    });
+
+}
 
 
-/* ESCAPE */
+/* =========================
+   ESCAPE CLOSE MODAL
+========================= */
 
 document.addEventListener(
-    "keydown",
-    function(e){
+"keydown",
+function(event){
 
-        if(e.key==="Escape"){
+    if(event.key === "Escape"){
 
-            closeCode();
-
-        }
+        closeCode();
 
     }
-);
+
+});
 
 
-/* SCROLL */
+/* =========================
+   SCROLL PROGRESS + TOP
+========================= */
 
 window.addEventListener(
-    "scroll",
-    function(){
+"scroll",
+function(){
 
-        var top=
-            document.getElementById("top");
+    const scrollTop =
+        document.documentElement.scrollTop;
 
+    const scrollHeight =
+        document.documentElement.scrollHeight
+        -
+        document.documentElement.clientHeight;
 
-        if(window.scrollY>300){
+    const percentage =
+        (scrollTop / scrollHeight) * 100;
 
-            top.style.display="block";
-
-        }else{
-
-            top.style.display="none";
-
-        }
-
-
-        var height=
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
+    document
+    .getElementById("progress")
+    .style.width =
+        percentage + "%";
 
 
-        var progress=
-            (window.scrollY/height)*100;
+    const topBtn =
+        document.getElementById("topBtn");
 
+    if(scrollTop > 400){
 
-        document
-        .getElementById("progress")
-        .style.width=
-            progress+"%";
+        topBtn.style.display = "block";
+
+    }else{
+
+        topBtn.style.display = "none";
 
     }
-);
+
+});
+
 
 </script>
 
 </body>
-  </html>
+    </html>
