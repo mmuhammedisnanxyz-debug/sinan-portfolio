@@ -23,7 +23,7 @@ html{
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f4f7fb;
     color:#172033;
     transition:.3s;
@@ -82,8 +82,8 @@ nav{
 
 .nav-buttons button{
     border:0;
-    background:#18365f;
     color:white;
+    background:#183d6f;
     padding:10px 14px;
     border-radius:10px;
     font-size:18px;
@@ -97,30 +97,26 @@ nav{
 }
 
 #menu{
+    display:none;
     position:absolute;
-    right:6%;
+    right:5%;
     top:65px;
-    width:220px;
+    width:210px;
     background:#0b2854;
     padding:10px;
-    border-radius:0 0 15px 15px;
-    display:none;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    border-radius:12px;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
 }
 
-#menu button{
-    width:100%;
-    border:0;
-    background:transparent;
+#menu a{
+    display:block;
     color:white;
     padding:13px;
-    text-align:left;
-    font-size:16px;
     border-radius:8px;
-    cursor:pointer;
+    transition:.3s;
 }
 
-#menu button:hover{
+#menu a:hover{
     background:#1683ff;
 }
 
@@ -130,49 +126,45 @@ nav{
 
 .hero{
     min-height:calc(100vh - 65px);
-    padding:45px 20px 70px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding:55px 20px 80px;
     text-align:center;
+    color:white;
     position:relative;
     overflow:hidden;
-    background:linear-gradient(135deg,#06376e,#1683ff,#7455ff);
-    color:white;
+    background:linear-gradient(135deg,#0755a8,#1683ff,#7657ff);
 }
 
-.hero::before,
-.hero::after{
+.hero:before,
+.hero:after{
     content:"";
     position:absolute;
+    width:350px;
+    height:350px;
     border-radius:50%;
-    filter:blur(10px);
-    animation:float 7s infinite ease-in-out;
+    filter:blur(70px);
+    opacity:.35;
+    animation:float 7s infinite alternate;
 }
 
-.hero::before{
-    width:280px;
-    height:280px;
-    background:rgba(0,212,255,.25);
-    top:10%;
+.hero:before{
+    background:#00d4ff;
+    top:-100px;
     left:-100px;
 }
 
-.hero::after{
-    width:320px;
-    height:320px;
-    background:rgba(255,80,220,.25);
+.hero:after{
+    background:#ff45e6;
     bottom:-100px;
     right:-100px;
     animation-delay:2s;
 }
 
 @keyframes float{
-    0%,100%{
-        transform:translate(0,0);
+    from{
+        transform:translate(0,0) scale(1);
     }
-    50%{
-        transform:translate(30px,-30px);
+    to{
+        transform:translate(40px,30px) scale(1.2);
     }
 }
 
@@ -180,172 +172,133 @@ nav{
     position:relative;
     z-index:2;
     max-width:900px;
-    animation:heroIn 1s ease;
+    margin:auto;
 }
 
-@keyframes heroIn{
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* =========================
-   AVAILABLE BADGE
-========================= */
-
-.availability{
+.available{
     display:inline-block;
-    padding:12px 25px;
+    padding:13px 25px;
     border:1px solid rgba(255,255,255,.3);
     background:rgba(255,255,255,.12);
-    backdrop-filter:blur(10px);
     border-radius:40px;
     font-size:20px;
+    margin-bottom:35px;
+    backdrop-filter:blur(10px);
+}
+
+.profile-box{
     margin-bottom:30px;
-    animation:pulse 2s infinite;
 }
 
-@keyframes pulse{
-    0%,100%{
-        box-shadow:0 0 0 rgba(255,255,255,0);
-    }
-    50%{
-        box-shadow:0 0 25px rgba(255,255,255,.25);
-    }
-}
-
-/* =========================
-   PROFILE PHOTO
-========================= */
-
-.profile-wrap{
-    margin-bottom:25px;
-}
-
-.profile-photo{
-    width:260px;
-    height:260px;
+#profilePhoto{
+    width:330px;
+    height:330px;
+    max-width:80vw;
+    max-height:80vw;
     object-fit:cover;
     border-radius:50%;
-    border:5px solid rgba(255,255,255,.4);
+    border:6px solid rgba(255,255,255,.8);
     box-shadow:
-        0 0 25px rgba(0,212,255,.7),
-        0 0 60px rgba(168,85,247,.4);
+        0 0 20px #00d4ff,
+        0 0 50px rgba(0,212,255,.5);
     transition:.4s;
-    background:linear-gradient(135deg,#00d4ff,#a855f7);
 }
 
-.profile-photo:hover{
-    transform:scale(1.05);
+#profilePhoto:hover{
+    transform:scale(1.04);
 }
 
-.photo-label{
-    display:inline-block;
-    margin-top:20px;
+.photo-button{
+    display:block;
+    width:max-content;
+    max-width:90%;
+    margin:25px auto;
     padding:14px 25px;
-    background:rgba(255,255,255,.15);
-    border-radius:30px;
+    border:0;
+    border-radius:35px;
+    background:rgba(255,255,255,.16);
+    color:white;
+    font-size:20px;
     cursor:pointer;
-    font-size:17px;
+    backdrop-filter:blur(10px);
     transition:.3s;
 }
 
-.photo-label:hover{
-    background:rgba(255,255,255,.25);
+.photo-button:hover{
     transform:translateY(-3px);
+    background:rgba(255,255,255,.25);
 }
 
 #photoInput{
     display:none;
 }
 
-/* =========================
-   HERO TEXT
-========================= */
-
 .hero h1{
     font-size:52px;
-    margin:25px 0 15px;
-    background:linear-gradient(90deg,#fff,#a9edff,#fff);
+    margin:20px 0;
+    line-height:1.1;
+    background:linear-gradient(90deg,#fff,#bff5ff,#fff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .typing{
+    min-height:45px;
     font-size:30px;
     font-weight:bold;
-    min-height:40px;
 }
 
-.hero-description{
-    max-width:750px;
+.hero p{
+    max-width:760px;
     margin:25px auto;
     font-size:21px;
     line-height:1.7;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .hero-buttons{
     display:flex;
     justify-content:center;
+    gap:18px;
     flex-wrap:wrap;
-    gap:20px;
     margin-top:30px;
 }
 
-.btn{
-    display:inline-block;
+.main-btn{
     border:0;
-    padding:16px 28px;
-    border-radius:35px;
-    font-size:17px;
+    padding:17px 30px;
+    border-radius:40px;
+    font-size:19px;
     font-weight:bold;
     cursor:pointer;
+    background:#1683ff;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
     transition:.3s;
 }
 
-.btn-primary{
-    background:#1683ff;
-    color:white;
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
+.main-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
 }
 
-.btn-light{
+.white-btn{
     background:white;
     color:#172033;
 }
-
-.btn:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 30px rgba(0,0,0,.25);
-}
-
-/* =========================
-   INFO CHIPS
-========================= */
 
 .info-chips{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
     gap:12px;
-    margin-top:40px;
+    margin-top:35px;
 }
 
 .chip{
-    padding:11px 20px;
-    border:1px solid rgba(255,255,255,.25);
-    background:rgba(255,255,255,.1);
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,.3);
     border-radius:30px;
-    backdrop-filter:blur(8px);
+    background:rgba(255,255,255,.1);
 }
 
 /* =========================
@@ -353,36 +306,17 @@ nav{
 ========================= */
 
 section{
-    padding:90px 7%;
+    padding:80px 7%;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:50px;
-}
-
-.section-title h2{
     font-size:38px;
-    margin-bottom:12px;
+    margin-bottom:45px;
 }
 
-.section-title p{
-    opacity:.7;
-}
-
-/* =========================
-   REVEAL
-========================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
-
-.reveal.visible{
-    opacity:1;
-    transform:translateY(0);
+.section-title span{
+    color:#1683ff;
 }
 
 /* =========================
@@ -392,49 +326,40 @@ section{
 .about-box{
     max-width:900px;
     margin:auto;
-    background:white;
     padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    line-height:1.8;
+    background:white;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
     text-align:center;
 }
 
 .about-box p{
-    font-size:18px;
+    font-size:19px;
+    line-height:1.8;
 }
-
-/* =========================
-   STATS
-========================= */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:20px;
-    margin-top:40px;
+    margin-top:35px;
 }
 
 .stat{
+    padding:25px;
     background:white;
-    padding:30px 15px;
-    border-radius:18px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.07);
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.07);
-    transition:.3s;
-}
-
-.stat:hover{
-    transform:translateY(-7px);
 }
 
 .stat h3{
     font-size:35px;
-    margin-bottom:8px;
+    color:#1683ff;
 }
 
 .stat p{
-    opacity:.7;
+    margin-top:8px;
 }
 
 /* =========================
@@ -447,7 +372,7 @@ section{
 }
 
 .skill{
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
 
 .skill-top{
@@ -457,20 +382,24 @@ section{
     font-weight:bold;
 }
 
-.progress-bg{
-    width:100%;
+.skill-bar{
     height:12px;
-    background:#dce4ef;
     border-radius:20px;
+    background:#dfe7f2;
     overflow:hidden;
 }
 
-.progress-bar{
+.skill-fill{
     height:100%;
-    width:0;
     border-radius:20px;
-    background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
-    transition:2s;
+    background:linear-gradient(90deg,#00c6ff,#1683ff,#9b59ff);
+    animation:skillGrow 1.5s ease;
+}
+
+@keyframes skillGrow{
+    from{
+        width:0;
+    }
 }
 
 /* =========================
@@ -480,88 +409,76 @@ section{
 .why-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    margin-top:50px;
+    gap:22px;
+    margin-top:40px;
 }
 
 .why-card{
-    background:white;
     padding:30px;
-    border-radius:20px;
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.07);
+    background:white;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.07);
     transition:.3s;
 }
 
 .why-card:hover{
     transform:translateY(-8px);
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
 .why-card .icon{
-    font-size:40px;
+    font-size:45px;
     margin-bottom:15px;
-}
-
-.why-card h3{
-    margin-bottom:10px;
 }
 
 /* =========================
    SERVICES
 ========================= */
 
-.services-grid{
+.services{
+    background:#eef4ff;
+}
+
+.service-grid{
+    max-width:1000px;
+    margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:25px;
-    max-width:1000px;
-    margin:auto;
 }
 
 .service-card{
-    padding:40px 25px;
-    text-align:center;
     background:white;
-    border-radius:22px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    transition:.4s;
-    position:relative;
-    overflow:hidden;
-}
-
-.service-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg,#00d4ff,#1683ff,#a855f7);
+    padding:35px 25px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    transition:.35s;
+    border:1px solid rgba(22,131,255,.08);
 }
 
 .service-card:hover{
     transform:translateY(-10px);
-    box-shadow:0 20px 40px rgba(0,0,0,.14);
+    box-shadow:0 20px 45px rgba(22,131,255,.18);
 }
 
 .service-icon{
-    font-size:50px;
+    font-size:55px;
     margin-bottom:20px;
 }
 
 .service-card h3{
-    font-size:23px;
+    font-size:24px;
     margin-bottom:12px;
 }
 
 .service-card p{
-    opacity:.7;
+    color:#687386;
     line-height:1.6;
 }
 
 /* =========================
-   WORK FILTER
+   WORK
 ========================= */
 
 .filters{
@@ -575,9 +492,11 @@ section{
 .filter-btn{
     border:0;
     padding:11px 20px;
-    border-radius:25px;
-    background:#dce4ef;
+    border-radius:30px;
+    background:#e1ebfa;
+    color:#172033;
     cursor:pointer;
+    font-weight:bold;
     transition:.3s;
 }
 
@@ -587,11 +506,9 @@ section{
     color:white;
 }
 
-/* =========================
-   PROJECTS
-========================= */
-
-.projects{
+.work-grid{
+    max-width:1100px;
+    margin:auto;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:25px;
@@ -599,105 +516,77 @@ section{
 
 .project{
     background:white;
-    border-radius:20px;
+    border-radius:25px;
     overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    transition:.4s;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    transition:.35s;
 }
 
 .project:hover{
     transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(0,0,0,.14);
-}
-
-.project.featured{
-    border:3px solid #1683ff;
 }
 
 .project-thumb{
-    height:180px;
+    height:210px;
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:70px;
+    justify-content:center;
+    font-size:75px;
+    color:white;
     background:linear-gradient(135deg,#1683ff,#a855f7);
 }
 
-.project-body{
+.project-content{
     padding:25px;
 }
 
 .badge{
     display:inline-block;
+    padding:8px 14px;
+    border-radius:20px;
     background:#e7f1ff;
     color:#1683ff;
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:13px;
+    font-size:14px;
+    margin-bottom:14px;
+}
+
+.project h3{
+    font-size:23px;
     margin-bottom:12px;
 }
 
-.project-body h3{
-    margin-bottom:10px;
-}
-
-.project-body p{
+.project p{
+    color:#697386;
     line-height:1.6;
-    opacity:.7;
+    margin-bottom:20px;
 }
 
 .project-buttons{
     display:flex;
     gap:10px;
-    margin-top:20px;
+    flex-direction:column;
 }
 
-.project-buttons a,
-.project-buttons button{
-    flex:1;
-    padding:11px;
-    border:0;
-    border-radius:10px;
-    cursor:pointer;
+.project-btn{
+    display:block;
     text-align:center;
-    font-weight:bold;
+    padding:13px;
+    border-radius:12px;
     background:#1683ff;
     color:white;
-    transition:.3s;
-}
-
-.project-buttons a:last-child,
-.project-buttons button:last-child{
-    background:#172033;
-}
-
-.project-buttons a:hover,
-.project-buttons button:hover{
-    transform:translateY(-3px);
-}
-
-/* =========================
-   INSTAGRAM
-========================= */
-
-.instagram-box{
-    text-align:center;
-    margin-top:45px;
-}
-
-.instagram-btn{
-    display:inline-block;
-    padding:15px 28px;
-    border-radius:30px;
-    background:linear-gradient(90deg,#f58529,#dd2a7b,#8134af);
-    color:white;
     font-weight:bold;
     transition:.3s;
 }
 
-.instagram-btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(221,42,123,.3);
+.project-btn:hover{
+    transform:translateY(-2px);
+}
+
+.code-btn{
+    background:#172033;
+    cursor:pointer;
+    border:0;
+    font-size:16px;
 }
 
 /* =========================
@@ -705,12 +594,12 @@ section{
 ========================= */
 
 .contact-box{
-    max-width:700px;
+    max-width:750px;
     margin:auto;
     background:white;
     padding:35px;
-    border-radius:22px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
 }
 
 .form-group{
@@ -728,11 +617,11 @@ section{
     width:100%;
     padding:15px;
     border-radius:12px;
-    border:1px solid #d6dce5;
+    border:1px solid #d8e0eb;
     background:#f8fafc;
+    color:#172033;
     outline:none;
     font-size:16px;
-    transition:.3s;
 }
 
 .form-group textarea{
@@ -743,7 +632,7 @@ section{
 .form-group input:focus,
 .form-group textarea:focus{
     border-color:#1683ff;
-    box-shadow:0 0 15px rgba(0,132,255,.15);
+    box-shadow:0 0 15px rgba(0,120,255,.12);
 }
 
 .submit-btn{
@@ -753,14 +642,32 @@ section{
     border-radius:12px;
     background:#1683ff;
     color:white;
-    font-size:17px;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
+}
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram-box{
+    text-align:center;
+    margin-top:35px;
+}
+
+.instagram-btn{
+    display:inline-block;
+    padding:15px 28px;
+    border-radius:35px;
+    background:#172033;
+    color:white;
+    font-weight:bold;
     transition:.3s;
 }
 
-.submit-btn:hover{
-    transform:translateY(-3px);
+.instagram-btn:hover{
+    transform:translateY(-4px);
 }
 
 /* =========================
@@ -775,11 +682,11 @@ footer{
 }
 
 footer h2{
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 footer p{
-    opacity:.7;
+    opacity:.75;
     margin-bottom:20px;
 }
 
@@ -787,11 +694,10 @@ footer p{
     display:flex;
     justify-content:center;
     gap:12px;
-    margin-bottom:25px;
 }
 
 .social{
-    padding:12px 20px;
+    padding:12px 22px;
     border-radius:25px;
     background:#173a61;
     color:white;
@@ -809,19 +715,19 @@ footer p{
 
 #topBtn{
     position:fixed;
-    right:20px;
-    bottom:20px;
-    width:50px;
-    height:50px;
+    right:25px;
+    bottom:25px;
+    width:55px;
+    height:55px;
     border:0;
     border-radius:50%;
     background:#1683ff;
     color:white;
-    font-size:20px;
+    font-size:22px;
     cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
     display:none;
     z-index:900;
-    box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
 /* =========================
@@ -844,54 +750,71 @@ footer p{
 }
 
 .modal-box{
-    width:min(850px,100%);
-    max-height:85vh;
-    overflow:auto;
+    width:900px;
+    max-width:100%;
+    max-height:90vh;
     background:#101827;
     color:white;
     border-radius:20px;
-    padding:25px;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    overflow:hidden;
 }
 
-.modal-head{
+.modal-header{
+    padding:18px 20px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    background:#071b3a;
 }
 
 .close-btn{
     border:0;
-    background:#263449;
+    background:#ff4757;
     color:white;
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border-radius:50%;
     cursor:pointer;
-    font-size:20px;
+    font-size:18px;
 }
 
 .code-area{
-    background:#050b14;
     padding:20px;
-    border-radius:12px;
     overflow:auto;
+    max-height:65vh;
+}
+
+pre{
     white-space:pre-wrap;
     font-family:monospace;
     line-height:1.6;
-    font-size:14px;
+    color:#d9e7ff;
 }
 
 .copy-btn{
-    margin-top:15px;
+    margin:0 20px 20px;
     padding:12px 20px;
     border:0;
     border-radius:10px;
     background:#1683ff;
     color:white;
-    cursor:pointer;
     font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:.7s;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* =========================
@@ -900,7 +823,7 @@ footer p{
 
 body.dark{
     background:#08111f;
-    color:#edf4ff;
+    color:#f4f7ff;
 }
 
 body.dark .about-box,
@@ -910,72 +833,42 @@ body.dark .service-card,
 body.dark .project,
 body.dark .contact-box{
     background:#101b2d;
-    color:#edf4ff;
-}
-
-body.dark .progress-bg{
-    background:#25344a;
-}
-
-body.dark .filter-btn{
-    background:#1c2b40;
     color:white;
 }
 
-body.dark .filter-btn.active,
-body.dark .filter-btn:hover{
-    background:#1683ff;
+body.dark .project p,
+body.dark .service-card p{
+    color:#b7c1d2;
+}
+
+body.dark .services{
+    background:#071426;
+}
+
+body.dark .filter-btn{
+    background:#17263d;
+    color:white;
 }
 
 body.dark .form-group input,
 body.dark .form-group textarea{
-    background:#0b1525;
+    background:#0b1627;
     color:white;
-    border-color:#2b3b52;
+    border-color:#263852;
 }
 
-body.dark .project-buttons a:last-child,
-body.dark .project-buttons button:last-child{
-    background:#263449;
+body.dark .skill-bar{
+    background:#26344b;
 }
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
 
-@media(max-width:800px){
-
-    nav{
-        padding:0 25px;
-    }
-
-    .hero{
-        padding:40px 18px 60px;
-    }
+@media(max-width:850px){
 
     .hero h1{
-        font-size:39px;
-    }
-
-    .typing{
-        font-size:25px;
-    }
-
-    .hero-description{
-        font-size:18px;
-    }
-
-    .profile-photo{
-        width:210px;
-        height:210px;
-    }
-
-    section{
-        padding:70px 20px;
-    }
-
-    .section-title h2{
-        font-size:32px;
+        font-size:42px;
     }
 
     .stats{
@@ -983,13 +876,45 @@ body.dark .project-buttons button:last-child{
     }
 
     .why-grid,
-    .services-grid,
-    .projects{
+    .service-grid,
+    .work-grid{
         grid-template-columns:1fr;
     }
 
-    .project-buttons{
-        flex-direction:column;
+    section{
+        padding:65px 5%;
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .hero{
+        padding-top:45px;
+    }
+
+    #profilePhoto{
+        width:280px;
+        height:280px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .typing{
+        font-size:25px;
+    }
+
+    .hero p{
+        font-size:18px;
     }
 
     .hero-buttons{
@@ -997,10 +922,31 @@ body.dark .project-buttons button:last-child{
         align-items:center;
     }
 
-    .hero-buttons .btn{
+    .main-btn{
         width:90%;
     }
 
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .stat{
+        padding:18px 10px;
+    }
+
+    .stat h3{
+        font-size:28px;
+    }
+
+    .section-title{
+        font-size:32px;
+    }
+
+    .about-box,
+    .contact-box{
+        padding:25px 18px;
+    }
 }
 
 </style>
@@ -1016,45 +962,25 @@ body.dark .project-buttons button:last-child{
 
 <nav>
 
-    <div class="logo">
-        Sinan Hameed
-    </div>
+<div class="logo">Sinan Hameed</div>
 
-    <div class="nav-buttons">
+<div class="nav-buttons">
 
-        <button onclick="toggleMenu()">
-            ☰
-        </button>
+<button onclick="toggleMenu()">☰</button>
 
-        <button onclick="toggleDark()">
-            🌙
-        </button>
+<button onclick="toggleDark()">🌙</button>
 
-    </div>
+</div>
 
-    <div id="menu">
+<div id="menu">
 
-        <button onclick="showPage('home')">
-            🏠 Home
-        </button>
+<a href="#home" onclick="closeMenu()">Home</a>
+<a href="#about" onclick="closeMenu()">About</a>
+<a href="#services" onclick="closeMenu()">Services</a>
+<a href="#work" onclick="closeMenu()">Work</a>
+<a href="#contact" onclick="closeMenu()">Contact</a>
 
-        <button onclick="showPage('about')">
-            👤 About
-        </button>
-
-        <button onclick="showPage('services')">
-            💼 Services
-        </button>
-
-        <button onclick="showPage('work')">
-            🚀 Work
-        </button>
-
-        <button onclick="showPage('contact')">
-            📩 Contact
-        </button>
-
-    </div>
+</div>
 
 </nav>
 
@@ -1063,98 +989,69 @@ body.dark .project-buttons button:last-child{
      HOME
 ========================= -->
 
-<section id="home" class="hero">
+<section class="hero" id="home">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="availability">
-            🟢 Available for Projects
-        </div>
+<div class="available">
+🟢 Available for Projects
+</div>
 
-        <div class="profile-wrap">
+<div class="profile-box">
 
-            <!-- GitHub uploaded photo -->
-            <img
-                src="1000033941-Picsart-AiImageEnhancer.jpg"
-                alt="Sinan Hameed"
-                class="profile-photo"
-                id="profilePhoto"
-            >
+<img
+id="profilePhoto"
+src="1000033941-Picsart-AIImageEnhancer.jpg"
+alt="Sinan Hameed">
 
-            <br>
+<label class="photo-button">
+📷 Choose Profile Photo
+<input
+type="file"
+id="photoInput"
+accept="image/*">
+</label>
 
-            <!-- Optional local photo changer -->
-            <label class="photo-label" for="photoInput">
-                📷 Choose Profile Photo
-            </label>
+</div>
 
-            <input
-                type="file"
-                id="photoInput"
-                accept="image/*"
-            >
+<h1>Hello, I'm Sinan Hameed</h1>
 
-        </div>
+<div class="typing" id="typing"></div>
 
-        <h1>
-            Hello, I'm Sinan Hameed
-        </h1>
+<p>
+I create modern, creative and professional visual experiences
+with clean design, smooth animations and interactive ideas.
+</p>
 
-        <div class="typing" id="typing"></div>
+<div class="hero-buttons">
 
-        <p class="hero-description">
-            I create modern, responsive and creative websites
-            with clean design, smooth animations and interactive
-            user experiences.
-        </p>
+<button class="main-btn" onclick="goTo('work')">
+🚀 View My Work
+</button>
 
-        <div class="hero-buttons">
+<button class="main-btn white-btn" onclick="goTo('contact')">
+🤝 Hire Me
+</button>
 
-            <button
-                class="btn btn-primary"
-                onclick="showPage('work')"
-            >
-                🚀 View My Work
-            </button>
+<a
+class="main-btn white-btn"
+href="https://www.instagram.com/__sinan_hameed/"
+target="_blank">
+📸 Instagram
+</a>
 
-            <button
-                class="btn btn-light"
-                onclick="showPage('contact')"
-            >
-                🤝 Hire Me
-            </button>
+</div>
 
-            <a
-                class="btn btn-light"
-                href="https://www.instagram.com/__sinan_hameed/"
-                target="_blank"
-            >
-                📸 Instagram
-            </a>
+<div class="info-chips">
 
-        </div>
+<div class="chip">🎥 Videography</div>
+<div class="chip">📸 Photography</div>
+<div class="chip">🎨 Graphic Design</div>
+<div class="chip">✨ Creative</div>
 
-        <div class="info-chips">
+</div>
 
-            <span class="chip">
-                💻 Web Development
-            </span>
-
-            <span class="chip">
-                🎨 UI Design
-            </span>
-
-            <span class="chip">
-                📱 Responsive
-            </span>
-
-            <span class="chip">
-                ⚡ Interactive
-            </span>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -1163,234 +1060,167 @@ body.dark .project-buttons button:last-child{
      ABOUT
 ========================= -->
 
-<section id="about">
+<section id="about" class="reveal">
 
-    <div class="section-title reveal">
+<h2 class="section-title">
+About <span>Me</span>
+</h2>
 
-        <h2>About Me</h2>
+<div class="about-box">
 
-        <p>
-            A little about my skills and creativity
-        </p>
+<p>
+I'm Sinan Hameed, a creative person interested in
+videography, photography and graphic design.
+I enjoy creating attractive visual content and learning
+new creative skills.
+</p>
 
-    </div>
+</div>
 
-    <div class="about-box reveal">
+<div class="stats">
 
-        <p>
-            Hi, I'm Sinan Hameed. I enjoy creating modern,
-            creative and responsive digital experiences.
-            I love learning new technologies and improving
-            my design and development skills.
-        </p>
+<div class="stat">
+<h3 data-target="3">0</h3>
+<p>Projects</p>
+</div>
 
-    </div>
+<div class="stat">
+<h3 data-target="5">0</h3>
+<p>Skills</p>
+</div>
 
+<div class="stat">
+<h3 data-target="100">0</h3>
+<p>Creativity %</p>
+</div>
 
-    <!-- STATS -->
+<div class="stat">
+<h3 data-target="24">0</h3>
+<p>Learning Hours+</p>
+</div>
 
-    <div class="stats reveal">
+</div>
 
-        <div class="stat">
 
-            <h3 class="counter" data-target="3">
-                0
-            </h3>
+<!-- SKILLS -->
 
-            <p>
-                Projects
-            </p>
+<div class="skills">
 
-        </div>
+<div class="skill">
 
-        <div class="stat">
+<div class="skill-top">
+<span>Videography</span>
+<span>90%</span>
+</div>
 
-            <h3 class="counter" data-target="5">
-                0
-            </h3>
+<div class="skill-bar">
+<div class="skill-fill" style="width:90%"></div>
+</div>
 
-            <p>
-                Skills
-            </p>
+</div>
 
-        </div>
 
-        <div class="stat">
+<div class="skill">
 
-            <h3>
-                100%
-            </h3>
+<div class="skill-top">
+<span>Photography</span>
+<span>85%</span>
+</div>
 
-            <p>
-                Creativity
-            </p>
+<div class="skill-bar">
+<div class="skill-fill" style="width:85%"></div>
+</div>
 
-        </div>
+</div>
 
-        <div class="stat">
 
-            <h3 class="counter" data-target="24">
-                0
-            </h3>
+<div class="skill">
 
-            <p>
-                Learning Hours+
-            </p>
+<div class="skill-top">
+<span>Graphic Design</span>
+<span>80%</span>
+</div>
 
-        </div>
+<div class="skill-bar">
+<div class="skill-fill" style="width:80%"></div>
+</div>
 
-    </div>
+</div>
 
 
-    <!-- SKILLS -->
+<div class="skill">
 
-    <div class="skills reveal">
+<div class="skill-top">
+<span>Creative Editing</span>
+<span>88%</span>
+</div>
 
-        <div class="skill">
+<div class="skill-bar">
+<div class="skill-fill" style="width:88%"></div>
+</div>
 
-            <div class="skill-top">
-                <span>HTML</span>
-                <span>90%</span>
-            </div>
+</div>
 
-            <div class="progress-bg">
-                <div
-                    class="progress-bar"
-                    data-width="90%"
-                ></div>
-            </div>
 
-        </div>
+<div class="skill">
 
+<div class="skill-top">
+<span>Visual Content</span>
+<span>85%</span>
+</div>
 
-        <div class="skill">
+<div class="skill-bar">
+<div class="skill-fill" style="width:85%"></div>
+</div>
 
-            <div class="skill-top">
-                <span>CSS</span>
-                <span>85%</span>
-            </div>
+</div>
 
-            <div class="progress-bg">
-                <div
-                    class="progress-bar"
-                    data-width="85%"
-                ></div>
-            </div>
+</div>
 
-        </div>
 
+<!-- WHY -->
 
-        <div class="skill">
+<div class="why-grid">
 
-            <div class="skill-top">
-                <span>JavaScript</span>
-                <span>75%</span>
-            </div>
+<div class="why-card">
 
-            <div class="progress-bg">
-                <div
-                    class="progress-bar"
-                    data-width="75%"
-                ></div>
-            </div>
+<div class="icon">🎥</div>
 
-        </div>
+<h3>Creative Work</h3>
 
+<p>
+Creative ideas with attention to visual quality.
+</p>
 
-        <div class="skill">
+</div>
 
-            <div class="skill-top">
-                <span>UI Design</span>
-                <span>80%</span>
-            </div>
 
-            <div class="progress-bg">
-                <div
-                    class="progress-bar"
-                    data-width="80%"
-                ></div>
-            </div>
+<div class="why-card">
 
-        </div>
+<div class="icon">⚡</div>
 
+<h3>Fast Learning</h3>
 
-        <div class="skill">
+<p>
+Always learning new tools and techniques.
+</p>
 
-            <div class="skill-top">
-                <span>Responsive Design</span>
-                <span>88%</span>
-            </div>
+</div>
 
-            <div class="progress-bg">
-                <div
-                    class="progress-bar"
-                    data-width="88%"
-                ></div>
-            </div>
 
-        </div>
+<div class="why-card">
 
-    </div>
+<div class="icon">✨</div>
 
+<h3>Professional Style</h3>
 
-    <!-- WHY CHOOSE ME -->
+<p>
+Clean and modern presentation for every project.
+</p>
 
-    <div class="why-grid">
+</div>
 
-        <div class="why-card reveal">
-
-            <div class="icon">
-                💡
-            </div>
-
-            <h3>
-                Creative Ideas
-            </h3>
-
-            <p>
-                Modern and creative concepts
-                for digital projects.
-            </p>
-
-        </div>
-
-
-        <div class="why-card reveal">
-
-            <div class="icon">
-                ⚡
-            </div>
-
-            <h3>
-                Fast Learning
-            </h3>
-
-            <p>
-                Always learning new skills
-                and technologies.
-            </p>
-
-        </div>
-
-
-        <div class="why-card reveal">
-
-            <div class="icon">
-                📱
-            </div>
-
-            <h3>
-                Responsive
-            </h3>
-
-            <p>
-                Designs that work beautifully
-                on mobile and desktop.
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -1399,87 +1229,58 @@ body.dark .project-buttons button:last-child{
      SERVICES
 ========================= -->
 
-<section id="services">
+<section id="services" class="services reveal">
 
-    <div class="section-title reveal">
+<h2 class="section-title">
+My <span>Services</span>
+</h2>
 
-        <h2>
-            My Services
-        </h2>
-
-        <p>
-            Creative services I offer
-        </p>
-
-    </div>
+<div class="service-grid">
 
 
-    <div class="services-grid">
+<div class="service-card">
+
+<div class="service-icon">🎥</div>
+
+<h3>Videographer</h3>
+
+<p>
+Creative video shooting and visual storytelling
+for different types of projects.
+</p>
+
+</div>
 
 
-        <!-- VIDEOGRAPHER -->
+<div class="service-card">
 
-        <div class="service-card reveal">
+<div class="service-icon">📸</div>
 
-            <div class="service-icon">
-                🎥
-            </div>
+<h3>Photography</h3>
 
-            <h3>
-                Videographer
-            </h3>
+<p>
+Creative photography with a focus on
+beautiful composition and memorable moments.
+</p>
 
-            <p>
-                Creative video shooting and
-                visual storytelling for different
-                types of projects.
-            </p>
-
-        </div>
+</div>
 
 
-        <!-- PHOTOGRAPHY -->
+<div class="service-card">
 
-        <div class="service-card reveal">
+<div class="service-icon">🎨</div>
 
-            <div class="service-icon">
-                📷
-            </div>
+<h3>Graphic Designer</h3>
 
-            <h3>
-                Photography
-            </h3>
+<p>
+Creative graphic designs with modern
+visual ideas and clean presentation.
+</p>
 
-            <p>
-                Creative photography with
-                attention to composition,
-                lighting and visual quality.
-            </p>
-
-        </div>
+</div>
 
 
-        <!-- GRAPHIC DESIGNER -->
-
-        <div class="service-card reveal">
-
-            <div class="service-icon">
-                🎨
-            </div>
-
-            <h3>
-                Graphic Designer
-            </h3>
-
-            <p>
-                Creative graphic designs,
-                social media visuals and
-                modern digital artwork.
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -1488,209 +1289,250 @@ body.dark .project-buttons button:last-child{
      WORK
 ========================= -->
 
-<section id="work">
+<section id="work" class="reveal">
 
-    <div class="section-title reveal">
+<h2 class="section-title">
+My <span>Work</span>
+</h2>
 
-        <h2>
-            My Work
-        </h2>
+<div class="filters">
 
-        <p>
-            Some of my creative projects
-        </p>
+<button class="filter-btn active"
+onclick="filterProjects('all',this)">
+All
+</button>
 
-    </div>
+<button class="filter-btn"
+onclick="filterProjects('videography',this)">
+🎥 Videography
+</button>
 
+<button class="filter-btn"
+onclick="filterProjects('photography',this)">
+📸 Photography
+</button>
 
-    <!-- FILTER -->
+<button class="filter-btn"
+onclick="filterProjects('design',this)">
+🎨 Graphic Design
+</button>
 
-    <div class="filters reveal">
-
-        <button
-            class="filter-btn active"
-            onclick="filterProjects('all',this)"
-        >
-            All
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filterProjects('web',this)"
-        >
-            Web
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filterProjects('design',this)"
-        >
-            Design
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filterProjects('interactive',this)"
-        >
-            Interactive
-        </button>
-
-    </div>
+</div>
 
 
-    <div class="projects">
+<div class="work-grid">
 
 
-        <!-- PROJECT 1 -->
+<!-- PROJECT 1 -->
 
-        <div class="project featured reveal" data-category="web">
+<div class="project" data-category="videography">
 
-            <div class="project-thumb">
-                💻
-            </div>
+<div class="project-thumb">
+🎥
+</div>
 
-            <div class="project-body">
+<div class="project-content">
 
-                <span class="badge">
-                    Featured • Web
-                </span>
+<span class="badge">
+Featured • Videography
+</span>
 
-                <h3>
-                    Premium Portfolio
-                </h3>
+<h3>
+Videography Project 01
+</h3>
 
-                <p>
-                    A modern responsive portfolio
-                    website with animations,
-                    dark mode and interactive UI.
-                </p>
+<p>
+Creative video project showcasing
+visual storytelling and editing.
+</p>
 
-                <div class="project-buttons">
+<div class="project-buttons">
 
-                    <a
-                        href="https://www.instagram.com/reel/DWJQh69D3bk/?igsi=MW52YzI1em44d3FsdQ=="
-                        target="_blank"
-                    >
-                        🚀 View Project
-                    </a>
+<a
+class="project-btn"
+href="https://www.instagram.com/reel/DWJQh69D3bk/?igsi=MW52YzI1em44d3FsdQ=="
+target="_blank">
+🚀 View Project
+</a>
 
-                    <button
-                        onclick="showCode('portfolio')"
-                    >
-                        💻 View Code
-                    </button>
+<button
+class="project-btn code-btn"
+onclick="showCode('Videography Project 01')">
+💻 View Code
+</button>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
-
-
-        <!-- PROJECT 2 -->
-
-        <div class="project reveal" data-category="design">
-
-            <div class="project-thumb">
-                🎨
-            </div>
-
-            <div class="project-body">
-
-                <span class="badge">
-                    Design
-                </span>
-
-                <h3>
-                    Creative UI Design
-                </h3>
-
-                <p>
-                    Clean and creative user interface
-                    concepts with modern visual design.
-                </p>
-
-                <div class="project-buttons">
-
-                    <a
-                        href="https://www.instagram.com/reel/Dcqf1EzJxZd/?igsi=MTV2eWR2bjNncnQ1Yg=="
-                        target="_blank"
-                    >
-                        🚀 View Project
-                    </a>
-
-                    <button
-                        onclick="showCode('ui')"
-                    >
-                        💻 View Code
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <!-- PROJECT 3 -->
+<!-- PROJECT 2 -->
 
-        <div class="project reveal" data-category="interactive">
+<div class="project" data-category="videography">
 
-            <div class="project-thumb">
-                ⚡
-            </div>
+<div class="project-thumb">
+🎬
+</div>
 
-            <div class="project-body">
+<div class="project-content">
 
-                <span class="badge">
-                    Interactive
-                </span>
+<span class="badge">
+Videography
+</span>
 
-                <h3>
-                    Interactive Experience
-                </h3>
+<h3>
+Videography Project 02
+</h3>
 
-                <p>
-                    Interactive web experience
-                    with smooth animations and
-                    engaging user interactions.
-                </p>
+<p>
+Another creative reel project created
+with visual editing and storytelling.
+</p>
 
-                <div class="project-buttons">
+<div class="project-buttons">
 
-                    <a
-                        href="https://www.instagram.com/reel/DYtmW1kpuDq/?igsi=ZHR3YjhrM2p0dmdx"
-                        target="_blank"
-                    >
-                        🚀 View Project
-                    </a>
+<a
+class="project-btn"
+href="https://www.instagram.com/reel/Dcqf1EzJxZd/?igsi=MTV2eWR2bjNncnQ1Yg=="
+target="_blank">
+🚀 View Project
+</a>
 
-                    <button
-                        onclick="showCode('interactive')"
-                    >
-                        💻 View Code
-                    </button>
+<button
+class="project-btn code-btn"
+onclick="showCode('Videography Project 02')">
+💻 View Code
+</button>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="instagram-box reveal">
+<!-- PROJECT 3 -->
 
-        <a
-            class="instagram-btn"
-            href="https://www.instagram.com/__sinan_hameed/"
-            target="_blank"
-        >
-            📸 See More on Instagram
-        </a>
+<div class="project" data-category="videography">
 
-    </div>
+<div class="project-thumb">
+📹
+</div>
+
+<div class="project-content">
+
+<span class="badge">
+Videography
+</span>
+
+<h3>
+Videography Project 03
+</h3>
+
+<p>
+Creative Instagram reel project featuring
+visual content and editing.
+</p>
+
+<div class="project-buttons">
+
+<a
+class="project-btn"
+href="https://www.instagram.com/reel/DYtmW1kpuDq/?igsi=ZHR3YjhrM2p0dmdx"
+target="_blank">
+🚀 View Project
+</a>
+
+<button
+class="project-btn code-btn"
+onclick="showCode('Videography Project 03')">
+💻 View Code
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PHOTOGRAPHY -->
+
+<div class="project"
+data-category="photography"
+style="display:none">
+
+<div class="project-thumb">
+📸
+</div>
+
+<div class="project-content">
+
+<span class="badge">
+Photography
+</span>
+
+<h3>
+Photography
+</h3>
+
+<p>
+Photography projects will be added here.
+</p>
+
+<div class="project-buttons">
+
+<button class="project-btn">
+📸 Coming Soon
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- GRAPHIC DESIGN -->
+
+<div class="project"
+data-category="design"
+style="display:none">
+
+<div class="project-thumb">
+🎨
+</div>
+
+<div class="project-content">
+
+<span class="badge">
+Graphic Design
+</span>
+
+<h3>
+Graphic Design
+</h3>
+
+<p>
+Graphic design projects will be added here.
+</p>
+
+<div class="project-buttons">
+
+<button class="project-btn">
+🎨 Coming Soon
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
 
 </section>
 
@@ -1699,82 +1541,83 @@ body.dark .project-buttons button:last-child{
      CONTACT
 ========================= -->
 
-<section id="contact">
+<section id="contact" class="reveal">
 
-    <div class="section-title reveal">
+<h2 class="section-title">
+Contact <span>Me</span>
+</h2>
 
-        <h2>
-            Contact Me
-        </h2>
+<div class="contact-box">
 
-        <p>
-            Let's connect and create something great
-        </p>
+<form onsubmit="sendContact(event)">
 
-    </div>
+<div class="form-group">
 
+<label>Name</label>
 
-    <div class="contact-box reveal">
+<input
+type="text"
+id="name"
+placeholder="Your Name"
+required>
 
-        <form onsubmit="sendMessage(event)">
-
-            <div class="form-group">
-
-                <label>
-                    Your Name
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name"
-                    required
-                >
-
-            </div>
+</div>
 
 
-            <div class="form-group">
+<div class="form-group">
 
-                <label>
-                    Email
-                </label>
+<label>Email</label>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                >
+<input
+type="email"
+id="email"
+placeholder="Your Email"
+required>
 
-            </div>
+</div>
 
 
-            <div class="form-group">
+<div class="form-group">
 
-                <label>
-                    Message
-                </label>
+<label>Message</label>
 
-                <textarea
-                    id="message"
-                    placeholder="Write your message..."
-                    required
-                ></textarea>
+<textarea
+id="message"
+placeholder="Your Message"
+required></textarea>
 
-            </div>
+</div>
 
 
-            <button
-                class="submit-btn"
-                type="submit"
-            >
-                📩 Send Message
-            </button>
+<button
+class="submit-btn"
+type="submit">
 
-        </form>
+📩 Send Message
 
-    </div>
+</button>
+
+</form>
+
+
+<div class="instagram-box">
+
+<p style="margin-bottom:15px;">
+You can also contact me through Instagram.
+</p>
+
+<a
+class="instagram-btn"
+href="https://www.instagram.com/__sinan_hameed/"
+target="_blank">
+
+📸 Contact on Instagram
+
+</a>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1785,29 +1628,30 @@ body.dark .project-buttons button:last-child{
 
 <footer>
 
-    <h2>
-        Sinan Hameed
-    </h2>
+<h2>Sinan Hameed</h2>
 
-    <p>
-        Creative • Photography • Videography • Design
-    </p>
+<p>
+Videographer • Photographer • Graphic Designer
+</p>
 
-    <div class="socials">
+<div class="socials">
 
-        <a
-            class="social"
-            href="https://www.instagram.com/__sinan_hameed/"
-            target="_blank"
-        >
-            📸 Instagram
-        </a>
+<a
+class="social"
+href="https://www.instagram.com/__sinan_hameed/"
+target="_blank">
 
-    </div>
+📸 Instagram
 
-    <p>
-        © 2026 Sinan Hameed. All Rights Reserved.
-    </p>
+</a>
+
+</div>
+
+<br>
+
+<p>
+© 2026 Sinan Hameed. All Rights Reserved.
+</p>
 
 </footer>
 
@@ -1816,11 +1660,8 @@ body.dark .project-buttons button:last-child{
      BACK TO TOP
 ========================= -->
 
-<button
-    id="topBtn"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})"
->
-    ↑
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
 </button>
 
 
@@ -1828,42 +1669,39 @@ body.dark .project-buttons button:last-child{
      CODE MODAL
 ========================= -->
 
-<div
-    class="modal"
-    id="codeModal"
-    onclick="outsideClose(event)"
->
+<div class="modal" id="codeModal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <div class="modal-head">
+<div class="modal-header">
 
-            <h2 id="modalTitle">
-                Project Code
-            </h2>
+<h3 id="modalTitle">
+Project Code
+</h3>
 
-            <button
-                class="close-btn"
-                onclick="closeCode()"
-            >
-                ×
-            </button>
+<button
+class="close-btn"
+onclick="closeCode()">
+×
+</button>
 
-        </div>
+</div>
 
-        <pre
-            class="code-area"
-            id="codeContent"
-        ></pre>
+<div class="code-area">
 
-        <button
-            class="copy-btn"
-            onclick="copyCode()"
-        >
-            📋 Copy Code
-        </button>
+<pre id="codeText"></pre>
 
-    </div>
+</div>
+
+<button
+class="copy-btn"
+onclick="copyCode()">
+
+📋 Copy Code
+
+</button>
+
+</div>
 
 </div>
 
@@ -1876,32 +1714,17 @@ body.dark .project-buttons button:last-child{
 
 function toggleMenu(){
 
-    const menu = document.getElementById("menu");
+    const menu=document.getElementById("menu");
 
-    if(menu.style.display === "block"){
-        menu.style.display = "none";
+    if(menu.style.display==="block"){
+        menu.style.display="none";
     }else{
-        menu.style.display = "block";
+        menu.style.display="block";
     }
 
 }
 
-
-/* =========================
-   SHOW PAGE
-========================= */
-
-function showPage(id){
-
-    const section = document.getElementById(id);
-
-    if(section){
-
-        section.scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
+function closeMenu(){
 
     document.getElementById("menu").style.display="none";
 
@@ -1920,100 +1743,103 @@ function toggleDark(){
 
 
 /* =========================
-   TYPING ANIMATION
+   NAVIGATION
 ========================= */
 
-const words = [
-    "Web Developer",
-    "Creative Designer",
-    "Frontend Developer",
-    "UI Designer"
-];
+function goTo(id){
 
-let wordIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeEffect(){
-
-    const typing = document.getElementById("typing");
-
-    const current = words[wordIndex];
-
-    if(!deleting){
-
-        typing.textContent =
-            current.substring(0,charIndex + 1);
-
-        charIndex++;
-
-        if(charIndex === current.length){
-
-            deleting = true;
-
-            setTimeout(typeEffect,1200);
-
-            return;
-        }
-
-    }else{
-
-        typing.textContent =
-            current.substring(0,charIndex - 1);
-
-        charIndex--;
-
-        if(charIndex === 0){
-
-            deleting = false;
-
-            wordIndex++;
-
-            if(wordIndex >= words.length){
-                wordIndex = 0;
-            }
-
-        }
-
-    }
-
-    setTimeout(
-        typeEffect,
-        deleting ? 50 : 90
-    );
+    document.getElementById(id).scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
-
-typeEffect();
 
 
 /* =========================
    PROFILE PHOTO
 ========================= */
 
-document
-.getElementById("photoInput")
-.addEventListener("change",function(){
+document.getElementById("photoInput").addEventListener("change",function(e){
 
-    const file = this.files[0];
+    const file=e.target.files[0];
 
-    if(file){
+    if(!file) return;
 
-        const reader = new FileReader();
+    const reader=new FileReader();
 
-        reader.onload = function(e){
+    reader.onload=function(event){
 
-            document
-            .getElementById("profilePhoto")
-            .src = e.target.result;
+        document.getElementById("profilePhoto").src=
+        event.target.result;
 
-        };
+    };
 
-        reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =========================
+   TYPING ANIMATION
+========================= */
+
+const words=[
+    "Videographer",
+    "Photographer",
+    "Creative Designer",
+    "Graphic Designer"
+];
+
+let wordIndex=0;
+let charIndex=0;
+let deleting=false;
+
+function typing(){
+
+    const element=document.getElementById("typing");
+
+    const word=words[wordIndex];
+
+    if(!deleting){
+
+        element.textContent=word.substring(0,charIndex+1);
+
+        charIndex++;
+
+        if(charIndex===word.length){
+
+            deleting=true;
+
+            setTimeout(typing,1200);
+
+            return;
+        }
+
+    }else{
+
+        element.textContent=word.substring(0,charIndex-1);
+
+        charIndex--;
+
+        if(charIndex===0){
+
+            deleting=false;
+
+            wordIndex++;
+
+            if(wordIndex===words.length){
+                wordIndex=0;
+            }
+
+        }
 
     }
 
-});
+    setTimeout(typing,deleting?60:100);
+
+}
+
+typing();
 
 
 /* =========================
@@ -2022,11 +1848,10 @@ document
 
 function filterProjects(category,button){
 
-    const projects =
-        document.querySelectorAll(".project");
+    const projects=
+    document.querySelectorAll(".project");
 
-    document
-    .querySelectorAll(".filter-btn")
+    document.querySelectorAll(".filter-btn")
     .forEach(btn=>{
         btn.classList.remove("active");
     });
@@ -2035,187 +1860,24 @@ function filterProjects(category,button){
 
     projects.forEach(project=>{
 
-        if(
-            category === "all" ||
-            project.dataset.category === category
-        ){
+        if(category==="all"){
 
             project.style.display="block";
 
         }else{
 
-            project.style.display="none";
+            if(project.dataset.category===category){
 
-        }
+                project.style.display="block";
 
-    });
+            }else{
 
-}
+                project.style.display="none";
 
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const observer =
-new IntersectionObserver(
-(entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("visible");
-
-        }
-
-    });
-
-},
-{
-    threshold:.15
-}
-);
-
-document
-.querySelectorAll(".reveal")
-.forEach(el=>{
-    observer.observe(el);
-});
-
-
-/* =========================
-   SKILL ANIMATION
-========================= */
-
-const skillObserver =
-new IntersectionObserver(
-(entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            document
-            .querySelectorAll(".progress-bar")
-            .forEach(bar=>{
-
-                bar.style.width =
-                    bar.dataset.width;
-
-            });
-
-        }
-
-    });
-
-},
-{
-    threshold:.3
-}
-);
-
-const skillsSection =
-document.querySelector(".skills");
-
-if(skillsSection){
-    skillObserver.observe(skillsSection);
-}
-
-
-/* =========================
-   COUNTERS
-========================= */
-
-let countersStarted = false;
-
-function startCounters(){
-
-    if(countersStarted) return;
-
-    countersStarted = true;
-
-    document
-    .querySelectorAll(".counter")
-    .forEach(counter=>{
-
-        const target =
-            Number(counter.dataset.target);
-
-        let value = 0;
-
-        const interval =
-        setInterval(()=>{
-
-            value++;
-
-            counter.textContent = value;
-
-            if(value >= target){
-                clearInterval(interval);
             }
 
-        },60);
-
-    });
-
-}
-
-
-const counterObserver =
-new IntersectionObserver(
-(entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            startCounters();
-
         }
 
-    });
-
-},
-{
-    threshold:.5
-}
-);
-
-document
-.querySelectorAll(".stats")
-.forEach(el=>{
-    counterObserver.observe(el);
-});
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-function sendMessage(event){
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("name").value;
-
-    const email =
-        document.getElementById("email").value;
-
-    const message =
-        document.getElementById("message").value;
-
-    alert(
-        "Thank you " +
-        name +
-        "! Your message has been received."
-    );
-
-    console.log({
-        name:name,
-        email:email,
-        message:message
     });
 
 }
@@ -2225,120 +1887,50 @@ function sendMessage(event){
    CODE MODAL
 ========================= */
 
-const projectCodes = {
-
-portfolio:
-
-`<!DOCTYPE html>
-<html>
-<head>
-<title>Portfolio</title>
-</head>
-
-<body>
-
-<h1>Hello, I'm Sinan Hameed</h1>
-
-<p>
-Creative Web Developer & Designer
-</p>
-
-</body>
-</html>`,
-
-ui:
-
-`<!DOCTYPE html>
-<html>
-<head>
-
-<style>
-
-.card{
-    padding:30px;
-    border-radius:20px;
-    background:linear-gradient(
-        135deg,
-        #1683ff,
-        #a855f7
-    );
-    color:white;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="card">
-    Creative UI Design
-</div>
-
-</body>
-</html>`,
-
-interactive:
-
-`<!DOCTYPE html>
-<html>
-
-<head>
-
-<style>
-
-button{
-    padding:15px 25px;
-    border:0;
-    border-radius:25px;
-    cursor:pointer;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<button onclick="hello()">
-    Click Me
-</button>
-
-<script>
-
-function hello(){
-
-    alert("Hello!");
-
-}
-
-<\/script>
-
-</body>
-
-</html>`
-
-};
-
+let currentCode="";
 
 function showCode(project){
 
-    const modal =
-        document.getElementById("codeModal");
+    const modal=document.getElementById("codeModal");
 
-    const content =
-        document.getElementById("codeContent");
+    const title=document.getElementById("modalTitle");
 
-    const title =
-        document.getElementById("modalTitle");
+    const code=document.getElementById("codeText");
 
-    title.textContent =
-        project.charAt(0).toUpperCase()
-        + project.slice(1)
-        + " Project Code";
+    title.textContent=project;
 
-    content.textContent =
-        projectCodes[project];
+    currentCode=
+`<!-- ${project} -->
+
+<div class="project">
+
+    <div class="project-thumb">
+        🎥
+    </div>
+
+    <div class="project-content">
+
+        <span class="badge">
+            Videography
+        </span>
+
+        <h3>
+            ${project}
+        </h3>
+
+        <p>
+            Creative videography project.
+        </p>
+
+        <a href="#" class="project-btn">
+            🚀 View Project
+        </a>
+
+    </div>
+
+</div>`;
+
+    code.textContent=currentCode;
 
     modal.classList.add("show");
 
@@ -2347,108 +1939,177 @@ function showCode(project){
 
 function closeCode(){
 
-    document
-    .getElementById("codeModal")
+    document.getElementById("codeModal")
     .classList.remove("show");
-
-}
-
-
-function outsideClose(event){
-
-    if(
-        event.target ===
-        document.getElementById("codeModal")
-    ){
-
-        closeCode();
-
-    }
 
 }
 
 
 function copyCode(){
 
-    const code =
-        document.getElementById("codeContent")
-        .textContent;
-
-    navigator.clipboard
-    .writeText(code)
+    navigator.clipboard.writeText(currentCode)
     .then(()=>{
 
-        alert("Code copied! 📋");
-
-    })
-    .catch(()=>{
-
-        alert("Copy failed.");
+        alert("Code copied! ✅");
 
     });
 
 }
 
 
-/* =========================
-   ESCAPE CLOSE MODAL
-========================= */
+document.getElementById("codeModal")
+.addEventListener("click",function(e){
 
-document.addEventListener(
-"keydown",
-function(event){
-
-    if(event.key === "Escape"){
-
+    if(e.target===this){
         closeCode();
-
     }
 
 });
+
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+        closeCode();
+    }
+
+});
+
+
+/* =========================
+   CONTACT
+========================= */
+
+function sendContact(event){
+
+    event.preventDefault();
+
+    const name=document.getElementById("name").value;
+
+    alert(
+        "Thank you, "+name+"! Your message is ready. 📩"
+    );
+
+    event.target.reset();
+
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const reveals=document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+    reveals.forEach(element=>{
+
+        const top=
+        element.getBoundingClientRect().top;
+
+        if(top < window.innerHeight-100){
+
+            element.classList.add("visible");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll",revealOnScroll);
+
+revealOnScroll();
+
+
+/* =========================
+   COUNTERS
+========================= */
+
+let countersStarted=false;
+
+function startCounters(){
+
+    if(countersStarted) return;
+
+    const about=
+    document.getElementById("about");
+
+    const top=
+    about.getBoundingClientRect().top;
+
+    if(top < window.innerHeight-100){
+
+        countersStarted=true;
+
+        document.querySelectorAll(".stat h3")
+        .forEach(counter=>{
+
+            const target=
+            Number(counter.dataset.target);
+
+            let count=0;
+
+            const interval=setInterval(()=>{
+
+                count++;
+
+                counter.textContent=count;
+
+                if(count>=target){
+
+                    clearInterval(interval);
+
+                }
+
+            },20);
+
+        });
+
+    }
+
+}
+
+window.addEventListener("scroll",startCounters);
 
 
 /* =========================
    SCROLL PROGRESS + TOP
 ========================= */
 
-window.addEventListener(
-"scroll",
-function(){
+window.addEventListener("scroll",function(){
 
-    const scrollTop =
-        document.documentElement.scrollTop;
+    const scrollTop=
+    document.documentElement.scrollTop;
 
-    const scrollHeight =
-        document.documentElement.scrollHeight
-        -
-        document.documentElement.clientHeight;
+    const height=
+    document.documentElement.scrollHeight-
+    document.documentElement.clientHeight;
 
-    const percentage =
-        (scrollTop / scrollHeight) * 100;
+    const percentage=
+    (scrollTop/height)*100;
 
-    document
-    .getElementById("progress")
-    .style.width =
-        percentage + "%";
+    document.getElementById("progress")
+    .style.width=percentage+"%";
 
 
-    const topBtn =
-        document.getElementById("topBtn");
+    const topBtn=
+    document.getElementById("topBtn");
 
-    if(scrollTop > 400){
+    if(scrollTop>400){
 
-        topBtn.style.display = "block";
+        topBtn.style.display="block";
 
     }else{
 
-        topBtn.style.display = "none";
+        topBtn.style.display="none";
 
     }
 
 });
 
-
 </script>
 
 </body>
-    </html>
+</html>
